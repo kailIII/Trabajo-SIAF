@@ -19,21 +19,12 @@ public class Service : System.Web.Services.WebService
         //InitializeComponent(); 
     }
     #region USUARIOS
-
-    #region Modificar Usuario por ID
-    [WebMethod(Description = "Modifica usuarios obteniendo paramatros password, perfil, nombre, apellido")]
-    public int ModificarUsuario(int id, string password, string perfil, string nombre, string apellido)
-    {
-        UsuarioNeg modificaUsuario = new UsuarioNeg();
-        return modificaUsuario.ModificarUsuarioByID(id, password, perfil, nombre, apellido);
-    }
-    #endregion //fin modificar usuario
-
     #region Agregar Usuario
-    [WebMethod(Description = "Agregar Usuario Recibiendo Parametros")]
-    public int AgregarUsuario(string password, string perfil, string nombre, string apellido)
+    [WebMethod(Description = "Agregar Usuario")]
+    public int AgregarUsuario(int id_sucursal, string password, string perfil, string nombre, string apellido)
     {
         USUARIO usuario = new USUARIO();
+        usuario.ID_SUCURSAL = id_sucursal;
         usuario.PASSWORD = password;
         usuario.PERFIL = perfil;
         usuario.NOMBRE_USUARIO = nombre;
@@ -43,6 +34,15 @@ public class Service : System.Web.Services.WebService
         return cargaUsuario.AgregarUsuario(usuario);
     }
     #endregion //fin agregar usuario
+
+    #region Modificar Usuario por ID
+    [WebMethod(Description = "Modifica Usuario por ID, con parametros de entrada")]
+    public int ModificarUsuario(int id,int id_sucursal, string password, string perfil, string nombre, string apellido)
+    {
+        UsuarioNeg modificaUsuario = new UsuarioNeg();
+        return modificaUsuario.ModificarUsuarioByID(id, id_sucursal, password, perfil, nombre, apellido);
+    }
+    #endregion //fin modificar usuario
 
     #region Listar Todos los usuarios
     [WebMethod(Description = "Muestra todos los usuarios ingresados")]

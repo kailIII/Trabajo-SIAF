@@ -32,6 +32,7 @@ namespace Negocio
         {
             int resultado = 0;
             CLIENTES clientes = new CLIENTES();
+            clientes.ID_CLIENTE = id;
             clientes.NOMBRE_CLIENTE = nombre;
             clientes.RUT = rut;
             clientes.TELEFONO_CLIENTE = telefono;

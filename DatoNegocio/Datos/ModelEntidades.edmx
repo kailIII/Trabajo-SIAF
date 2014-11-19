@@ -58,9 +58,9 @@
             <End Role="TIPO" EntitySet="TIPO" />
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
-          <AssociationSet Name="FK_SUCURSAL_USUARIO_S_USUARIO" Association="SIAFModel.Store.FK_SUCURSAL_USUARIO_S_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIO" />
+          <AssociationSet Name="FK_USUARIO_SUCURSAL__SUCURSAL" Association="SIAFModel.Store.FK_USUARIO_SUCURSAL__SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BODEGA">
@@ -146,7 +146,6 @@
             <PropertyRef Name="ID_SUCURSAL" />
           </Key>
           <Property Name="ID_SUCURSAL" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ID_USUARIO" Type="int" />
           <Property Name="DIRECCION_SUCURSAL" Type="varchar" MaxLength="50" />
           <Property Name="TELEFONO_SUCURSAL" Type="int" />
         </EntityType>
@@ -172,6 +171,7 @@
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SUCURSAL" Type="int" />
           <Property Name="PASSWORD" Type="varchar" MaxLength="10" />
           <Property Name="PERFIL" Type="varchar" MaxLength="10" />
           <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="50" />
@@ -297,15 +297,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SUCURSAL_USUARIO_S_USUARIO">
-          <End Role="USUARIO" Type="SIAFModel.Store.USUARIO" Multiplicity="0..1" />
-          <End Role="SUCURSAL" Type="SIAFModel.Store.SUCURSAL" Multiplicity="*" />
+        <Association Name="FK_USUARIO_SUCURSAL__SUCURSAL">
+          <End Role="SUCURSAL" Type="SIAFModel.Store.SUCURSAL" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="SIAFModel.Store.USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
             </Principal>
-            <Dependent Role="SUCURSAL">
-              <PropertyRef Name="ID_USUARIO" />
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -367,9 +367,9 @@
             <End Role="TIPO" EntitySet="TIPO" />
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
-          <AssociationSet Name="FK_SUCURSAL_USUARIO_S_USUARIO" Association="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIO" />
+          <AssociationSet Name="FK_USUARIO_SUCURSAL__SUCURSAL" Association="SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BODEGA">
@@ -473,11 +473,10 @@
             <PropertyRef Name="ID_SUCURSAL" />
           </Key>
           <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_USUARIO" Type="Int32" />
           <Property Name="DIRECCION_SUCURSAL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="TELEFONO_SUCURSAL" Type="Int32" />
           <NavigationProperty Name="OT" Relationship="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" FromRole="SUCURSAL" ToRole="OT" />
-          <NavigationProperty Name="USUARIO" Relationship="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO" FromRole="SUCURSAL" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIO" Relationship="SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL" FromRole="SUCURSAL" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -502,11 +501,12 @@
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SUCURSAL" Type="Int32" />
           <Property Name="PASSWORD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="PERFIL" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="APELLIDO_USUARIO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="SUCURSAL" Relationship="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO" FromRole="USUARIO" ToRole="SUCURSAL" />
+          <NavigationProperty Name="SUCURSAL" Relationship="SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL" FromRole="USUARIO" ToRole="SUCURSAL" />
         </EntityType>
         <Association Name="FK_PRODUCTO_BODEGA_PR_BODEGA">
           <End Role="BODEGA" Type="SIAFModel.BODEGA" Multiplicity="1" />
@@ -628,15 +628,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SUCURSAL_USUARIO_S_USUARIO">
-          <End Role="USUARIO" Type="SIAFModel.USUARIO" Multiplicity="0..1" />
-          <End Role="SUCURSAL" Type="SIAFModel.SUCURSAL" Multiplicity="*" />
+        <Association Name="FK_USUARIO_SUCURSAL__SUCURSAL">
+          <End Role="SUCURSAL" Type="SIAFModel.SUCURSAL" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="SIAFModel.USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
             </Principal>
-            <Dependent Role="SUCURSAL">
-              <PropertyRef Name="ID_USUARIO" />
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_SUCURSAL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -736,7 +736,6 @@
             <EntityTypeMapping TypeName="SIAFModel.SUCURSAL">
               <MappingFragment StoreEntitySet="SUCURSAL">
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="DIRECCION_SUCURSAL" ColumnName="DIRECCION_SUCURSAL" />
                 <ScalarProperty Name="TELEFONO_SUCURSAL" ColumnName="TELEFONO_SUCURSAL" />
               </MappingFragment>
@@ -765,6 +764,7 @@
             <EntityTypeMapping TypeName="SIAFModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="PERFIL" ColumnName="PERFIL" />
                 <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
@@ -798,13 +798,13 @@
         <EntityTypeShape EntityType="SIAFModel.DETALLE" Width="1.5" PointX="5.25" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.DETALLE_FACTURA" Width="1.5" PointX="0.75" PointY="11.625" Height="1.7879850260416639" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.FACTURA" Width="1.5" PointX="1.5" PointY="15.125" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="10.625" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="10.5" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.PRODUCTO" Width="1.5" PointX="3" PointY="3.375" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.PRODUCTOS_OT" Width="1.5" PointX="5.25" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="18.625" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="18.625" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="7" Height="1.9802864583333308" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.TIPO" Width="1.5" PointX="0.75" PointY="1" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.USUARIO" Width="1.5" PointX="1.5" PointY="21.625" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.USUARIO" Width="1.5" PointX="3" PointY="19.375" Height="2.3648893229166745" IsExpanded="true" />
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_BODEGA_PR_BODEGA" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
           <ConnectorPoint PointX="3" PointY="4.797841796875" />
@@ -819,7 +819,7 @@
         <AssociationConnector Association="SIAFModel.FK_OT_CLIENTE_O_CLIENTES" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="9.7062361067708309" />
           <ConnectorPoint PointX="4.40625" PointY="9.7062361067708309" />
-          <ConnectorPoint PointX="4.40625" PointY="10.625" />
+          <ConnectorPoint PointX="4.40625" PointY="10.5" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_DETALLE_DETALLE_P_PRODUCTO" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="4.7112939453125" />
@@ -838,13 +838,14 @@
           <ConnectorPoint PointX="3" PointY="12.518992513020832" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="19.711293945312498" />
-          <ConnectorPoint PointX="3.78125" PointY="19.711293945312498" />
-          <ConnectorPoint PointX="3.78125" PointY="13.951396484375" />
+          <ConnectorPoint PointX="2.25" PointY="18.626152846153843" />
+          <ConnectorPoint PointX="2.6261528461538433" PointY="18.25" />
+          <ConnectorPoint PointX="3.781252" PointY="18.25" />
+          <ConnectorPoint PointX="3.781252" PointY="13.826396484375" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="10.626152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="10.251152846153847" />
+          <ConnectorPoint PointX="4.5" PointY="10.501152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="10.126152846153847" />
           <ConnectorPoint PointX="4.875" PointY="1.7401432291666659" />
           <ConnectorPoint PointX="5.25" PointY="1.7401432291666659" />
         </AssociationConnector>
@@ -860,9 +861,9 @@
           <ConnectorPoint PointX="3.3437475" PointY="1.6332336718749998" />
           <ConnectorPoint PointX="3.3437475" PointY="3.375" />
         </AssociationConnector>
-        <AssociationConnector Association="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="21.625" />
-          <ConnectorPoint PointX="1.875" PointY="20.797587890624996" />
+        <AssociationConnector Association="SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="19.990143229166666" />
+          <ConnectorPoint PointX="3" PointY="19.990143229166666" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

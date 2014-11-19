@@ -43,11 +43,12 @@
   <ItemGroup>
     <Compile Include="ClienteNeg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SucursalNeg.cs" />
     <Compile Include="UsuarioNeg.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{D75784BA-2844-462D-9B3C-D73CCD38EE6D}</Project>
+      <Project>{DFB231B8-C347-4BBB-863B-94213BA51583}</Project>
       <Name>Datos</Name>
     </ProjectReference>
   </ItemGroup>

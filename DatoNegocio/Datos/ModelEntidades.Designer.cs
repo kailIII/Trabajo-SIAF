@@ -29,7 +29,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_PRODUCTO_OT_DETALL_OT", "OT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Datos.OT), "PRODUCTOS_OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.PRODUCTOS_OT), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_PRODUCTO_PRODUCTO__PRODUCTO", "PRODUCTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.PRODUCTO), "PRODUCTOS_OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.PRODUCTOS_OT), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_PRODUCTO_TIPO_PROD_TIPO", "TIPO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.TIPO), "PRODUCTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.PRODUCTO), true)]
-[assembly: EdmRelationshipAttribute("SIAFModel", "FK_SUCURSAL_USUARIO_S_USUARIO", "USUARIO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Datos.USUARIO), "SUCURSAL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.SUCURSAL), true)]
+[assembly: EdmRelationshipAttribute("SIAFModel", "FK_USUARIO_SUCURSAL__SUCURSAL", "SUCURSAL", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Datos.SUCURSAL), "USUARIO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.USUARIO), true)]
 
 #endregion
 
@@ -2218,30 +2218,6 @@ namespace Datos
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ID_USUARIO
-        {
-            get
-            {
-                return _ID_USUARIO;
-            }
-            set
-            {
-                OnID_USUARIOChanging(value);
-                ReportPropertyChanging("ID_USUARIO");
-                _ID_USUARIO = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ID_USUARIO");
-                OnID_USUARIOChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _ID_USUARIO;
-        partial void OnID_USUARIOChanging(Nullable<global::System.Int32> value);
-        partial void OnID_USUARIOChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String DIRECCION_SUCURSAL
         {
             get
@@ -2318,34 +2294,18 @@ namespace Datos
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_SUCURSAL_USUARIO_S_USUARIO", "USUARIO")]
-        public USUARIO USUARIO
+        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_USUARIO_SUCURSAL__SUCURSAL", "USUARIO")]
+        public EntityCollection<USUARIO> USUARIO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<USUARIO>("SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO", "USUARIO").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<USUARIO>("SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO", "USUARIO").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<USUARIO> USUARIOReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<USUARIO>("SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO", "USUARIO");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<USUARIO>("SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL", "USUARIO");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<USUARIO>("SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO", "USUARIO", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<USUARIO>("SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL", "USUARIO", value);
                 }
             }
         }
@@ -2675,6 +2635,30 @@ namespace Datos
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ID_SUCURSAL
+        {
+            get
+            {
+                return _ID_SUCURSAL;
+            }
+            set
+            {
+                OnID_SUCURSALChanging(value);
+                ReportPropertyChanging("ID_SUCURSAL");
+                _ID_SUCURSAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_SUCURSAL");
+                OnID_SUCURSALChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ID_SUCURSAL;
+        partial void OnID_SUCURSALChanging(Nullable<global::System.Int32> value);
+        partial void OnID_SUCURSALChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String PASSWORD
         {
             get
@@ -2777,18 +2761,34 @@ namespace Datos
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_SUCURSAL_USUARIO_S_USUARIO", "SUCURSAL")]
-        public EntityCollection<SUCURSAL> SUCURSAL
+        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_USUARIO_SUCURSAL__SUCURSAL", "SUCURSAL")]
+        public SUCURSAL SUCURSAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SUCURSAL>("SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO", "SUCURSAL");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SUCURSAL>("SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL", "SUCURSAL").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SUCURSAL>("SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL", "SUCURSAL").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SUCURSAL> SUCURSALReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SUCURSAL>("SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL", "SUCURSAL");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SUCURSAL>("SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO", "SUCURSAL", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SUCURSAL>("SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL", "SUCURSAL", value);
                 }
             }
         }

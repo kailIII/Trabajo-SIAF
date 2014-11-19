@@ -36,10 +36,12 @@ namespace Negocio
         #endregion
 
         #region Modificar Usuario By ID
-        public int ModificarUsuarioByID(int id, String password, String perfil, String nombre, String apellido)
+        public int ModificarUsuarioByID(int id,int id_sucursal, String password, String perfil, String nombre, String apellido)
         {
             int resultado = 0;
             USUARIO usuario = new USUARIO();
+            usuario.ID_USUARIO = id;
+            usuario.ID_SUCURSAL = id_sucursal;
             usuario.PASSWORD = password;
             usuario.PERFIL = perfil;
             usuario.NOMBRE_USUARIO = nombre;

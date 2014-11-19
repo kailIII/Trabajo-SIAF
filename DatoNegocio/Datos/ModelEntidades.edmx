@@ -1,0 +1,870 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SIAFModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SIAFModelStoreContainer">
+          <EntitySet Name="BODEGA" EntityType="SIAFModel.Store.BODEGA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CLIENTES" EntityType="SIAFModel.Store.CLIENTES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DETALLE" EntityType="SIAFModel.Store.DETALLE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DETALLE_FACTURA" EntityType="SIAFModel.Store.DETALLE_FACTURA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FACTURA" EntityType="SIAFModel.Store.FACTURA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OT" EntityType="SIAFModel.Store.OT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUCTO" EntityType="SIAFModel.Store.PRODUCTO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUCTOS_OT" EntityType="SIAFModel.Store.PRODUCTOS_OT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SUCURSAL" EntityType="SIAFModel.Store.SUCURSAL" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="SIAFModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TIPO" EntityType="SIAFModel.Store.TIPO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="USUARIO" EntityType="SIAFModel.Store.USUARIO" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DETALLE__FACTURA_D_FACTURA" Association="SIAFModel.Store.FK_DETALLE__FACTURA_D_FACTURA">
+            <End Role="FACTURA" EntitySet="FACTURA" />
+            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_DETALLE_P_PRODUCTO" Association="SIAFModel.Store.FK_DETALLE_DETALLE_P_PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="DETALLE" EntitySet="DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURA_CLIENTE_F_CLIENTES" Association="SIAFModel.Store.FK_FACTURA_CLIENTE_F_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="FACTURA" EntitySet="FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OT_CLIENTE_O_CLIENTES" Association="SIAFModel.Store.FK_OT_CLIENTE_O_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="OT" EntitySet="OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OT_DETALLE_F_DETALLE_" Association="SIAFModel.Store.FK_OT_DETALLE_F_DETALLE_">
+            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+            <End Role="OT" EntitySet="OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OT_SUCURSAL__SUCURSAL" Association="SIAFModel.Store.FK_OT_SUCURSAL__SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="OT" EntitySet="OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_BODEGA_PR_BODEGA" Association="SIAFModel.Store.FK_PRODUCTO_BODEGA_PR_BODEGA">
+            <End Role="BODEGA" EntitySet="BODEGA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_OT_DETALL_OT" Association="SIAFModel.Store.FK_PRODUCTO_OT_DETALL_OT">
+            <End Role="OT" EntitySet="OT" />
+            <End Role="PRODUCTOS_OT" EntitySet="PRODUCTOS_OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_PRODUCTO__PRODUCTO" Association="SIAFModel.Store.FK_PRODUCTO_PRODUCTO__PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="PRODUCTOS_OT" EntitySet="PRODUCTOS_OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_TIPO_PROD_TIPO" Association="SIAFModel.Store.FK_PRODUCTO_TIPO_PROD_TIPO">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUCURSAL_USUARIO_S_USUARIO" Association="SIAFModel.Store.FK_SUCURSAL_USUARIO_S_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BODEGA">
+          <Key>
+            <PropertyRef Name="COD_BODEGA" />
+          </Key>
+          <Property Name="COD_BODEGA" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ID_USUARIO" Type="int" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_CLIENTE" Type="varchar" MaxLength="100" />
+          <Property Name="RUT" Type="varchar" MaxLength="11" />
+          <Property Name="TELEFONO_CLIENTE" Type="int" />
+          <Property Name="MAIL" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION_CLIENTE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DETALLE">
+          <Key>
+            <PropertyRef Name="PRODUCTO_COD_DETALLE" />
+          </Key>
+          <Property Name="PRODUCTO_COD_DETALLE" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PRODUCTO_COD" Type="varchar" MaxLength="10" />
+          <Property Name="CANTIDAD_MINIMA" Type="int" />
+          <Property Name="CANTIDAD_ACTUAL" Type="int" />
+          <Property Name="VALOR" Type="int" />
+        </EntityType>
+        <EntityType Name="DETALLE_FACTURA">
+          <Key>
+            <PropertyRef Name="ID_DETALLE_FAC" />
+          </Key>
+          <Property Name="ID_DETALLE_FAC" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_FACTURA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURA">
+          <Key>
+            <PropertyRef Name="ID_FACTURA" />
+          </Key>
+          <Property Name="ID_FACTURA" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
+          <Property Name="NUM_FAC" Type="int" />
+          <Property Name="NETO_FAC" Type="int" />
+          <Property Name="IVA_FAC" Type="int" />
+          <Property Name="TOTAL_FAC" Type="int" />
+          <Property Name="CLIENTE_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="OT">
+          <Key>
+            <PropertyRef Name="ID_OT" />
+          </Key>
+          <Property Name="ID_OT" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_DETALLE_FAC" Type="int" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
+          <Property Name="CLIENTE_OT" Type="int" />
+          <Property Name="NETO_OT" Type="int" />
+          <Property Name="FECHA_OT" Type="datetime" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="PRODUCTO_COD" />
+          </Key>
+          <Property Name="PRODUCTO_COD" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ID_TIPO" Type="int" Nullable="false" />
+          <Property Name="COD_BODEGA" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="NOMBRE_PRODUCTO" Type="varchar" MaxLength="100" />
+          <Property Name="COD_BARRA" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS_OT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO_OT" />
+          </Key>
+          <Property Name="ID_PRODUCTO_OT" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCTO_COD" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ID_OT" Type="int" />
+        </EntityType>
+        <EntityType Name="SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="int" />
+          <Property Name="DIRECCION_SUCURSAL" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFONO_SUCURSAL" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_TIPO" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="10" />
+          <Property Name="PERFIL" Type="varchar" MaxLength="10" />
+          <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="50" />
+          <Property Name="APELLIDO_USUARIO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_DETALLE__FACTURA_D_FACTURA">
+          <End Role="FACTURA" Type="SIAFModel.Store.FACTURA" Multiplicity="1" />
+          <End Role="DETALLE_FACTURA" Type="SIAFModel.Store.DETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTURA">
+              <PropertyRef Name="ID_FACTURA" />
+            </Principal>
+            <Dependent Role="DETALLE_FACTURA">
+              <PropertyRef Name="ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_DETALLE_P_PRODUCTO">
+          <End Role="PRODUCTO" Type="SIAFModel.Store.PRODUCTO" Multiplicity="0..1" />
+          <End Role="DETALLE" Type="SIAFModel.Store.DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Principal>
+            <Dependent Role="DETALLE">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURA_CLIENTE_F_CLIENTES">
+          <End Role="CLIENTES" Type="SIAFModel.Store.CLIENTES" Multiplicity="1" />
+          <End Role="FACTURA" Type="SIAFModel.Store.FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="FACTURA">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OT_CLIENTE_O_CLIENTES">
+          <End Role="CLIENTES" Type="SIAFModel.Store.CLIENTES" Multiplicity="1" />
+          <End Role="OT" Type="SIAFModel.Store.OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="OT">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OT_DETALLE_F_DETALLE_">
+          <End Role="DETALLE_FACTURA" Type="SIAFModel.Store.DETALLE_FACTURA" Multiplicity="1" />
+          <End Role="OT" Type="SIAFModel.Store.OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DETALLE_FACTURA">
+              <PropertyRef Name="ID_DETALLE_FAC" />
+            </Principal>
+            <Dependent Role="OT">
+              <PropertyRef Name="ID_DETALLE_FAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OT_SUCURSAL__SUCURSAL">
+          <End Role="SUCURSAL" Type="SIAFModel.Store.SUCURSAL" Multiplicity="1" />
+          <End Role="OT" Type="SIAFModel.Store.OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="OT">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_BODEGA_PR_BODEGA">
+          <End Role="BODEGA" Type="SIAFModel.Store.BODEGA" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="SIAFModel.Store.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BODEGA">
+              <PropertyRef Name="COD_BODEGA" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="COD_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_OT_DETALL_OT">
+          <End Role="OT" Type="SIAFModel.Store.OT" Multiplicity="0..1" />
+          <End Role="PRODUCTOS_OT" Type="SIAFModel.Store.PRODUCTOS_OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OT">
+              <PropertyRef Name="ID_OT" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_OT">
+              <PropertyRef Name="ID_OT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_PRODUCTO__PRODUCTO">
+          <End Role="PRODUCTO" Type="SIAFModel.Store.PRODUCTO" Multiplicity="1" />
+          <End Role="PRODUCTOS_OT" Type="SIAFModel.Store.PRODUCTOS_OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_OT">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_TIPO_PROD_TIPO">
+          <End Role="TIPO" Type="SIAFModel.Store.TIPO" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="SIAFModel.Store.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUCURSAL_USUARIO_S_USUARIO">
+          <End Role="USUARIO" Type="SIAFModel.Store.USUARIO" Multiplicity="0..1" />
+          <End Role="SUCURSAL" Type="SIAFModel.Store.SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="SUCURSAL">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIAFModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SIAFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BODEGA" EntityType="SIAFModel.BODEGA" />
+          <EntitySet Name="CLIENTES" EntityType="SIAFModel.CLIENTES" />
+          <EntitySet Name="DETALLE" EntityType="SIAFModel.DETALLE" />
+          <EntitySet Name="DETALLE_FACTURA" EntityType="SIAFModel.DETALLE_FACTURA" />
+          <EntitySet Name="FACTURA" EntityType="SIAFModel.FACTURA" />
+          <EntitySet Name="OT" EntityType="SIAFModel.OT" />
+          <EntitySet Name="PRODUCTO" EntityType="SIAFModel.PRODUCTO" />
+          <EntitySet Name="PRODUCTOS_OT" EntityType="SIAFModel.PRODUCTOS_OT" />
+          <EntitySet Name="SUCURSAL" EntityType="SIAFModel.SUCURSAL" />
+          <EntitySet Name="sysdiagrams" EntityType="SIAFModel.sysdiagrams" />
+          <EntitySet Name="TIPO" EntityType="SIAFModel.TIPO" />
+          <EntitySet Name="USUARIO" EntityType="SIAFModel.USUARIO" />
+          <AssociationSet Name="FK_PRODUCTO_BODEGA_PR_BODEGA" Association="SIAFModel.FK_PRODUCTO_BODEGA_PR_BODEGA">
+            <End Role="BODEGA" EntitySet="BODEGA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURA_CLIENTE_F_CLIENTES" Association="SIAFModel.FK_FACTURA_CLIENTE_F_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="FACTURA" EntitySet="FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OT_CLIENTE_O_CLIENTES" Association="SIAFModel.FK_OT_CLIENTE_O_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="OT" EntitySet="OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_DETALLE_P_PRODUCTO" Association="SIAFModel.FK_DETALLE_DETALLE_P_PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="DETALLE" EntitySet="DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__FACTURA_D_FACTURA" Association="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA">
+            <End Role="FACTURA" EntitySet="FACTURA" />
+            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OT_DETALLE_F_DETALLE_" Association="SIAFModel.FK_OT_DETALLE_F_DETALLE_">
+            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+            <End Role="OT" EntitySet="OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OT_SUCURSAL__SUCURSAL" Association="SIAFModel.FK_OT_SUCURSAL__SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="OT" EntitySet="OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_OT_DETALL_OT" Association="SIAFModel.FK_PRODUCTO_OT_DETALL_OT">
+            <End Role="OT" EntitySet="OT" />
+            <End Role="PRODUCTOS_OT" EntitySet="PRODUCTOS_OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_PRODUCTO__PRODUCTO" Association="SIAFModel.FK_PRODUCTO_PRODUCTO__PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="PRODUCTOS_OT" EntitySet="PRODUCTOS_OT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_TIPO_PROD_TIPO" Association="SIAFModel.FK_PRODUCTO_TIPO_PROD_TIPO">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUCURSAL_USUARIO_S_USUARIO" Association="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BODEGA">
+          <Key>
+            <PropertyRef Name="COD_BODEGA" />
+          </Key>
+          <Property Name="COD_BODEGA" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <NavigationProperty Name="PRODUCTO" Relationship="SIAFModel.FK_PRODUCTO_BODEGA_PR_BODEGA" FromRole="BODEGA" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RUT" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="TELEFONO_CLIENTE" Type="Int32" />
+          <Property Name="MAIL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DIRECCION_CLIENTE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="FACTURA" Relationship="SIAFModel.FK_FACTURA_CLIENTE_F_CLIENTES" FromRole="CLIENTES" ToRole="FACTURA" />
+          <NavigationProperty Name="OT" Relationship="SIAFModel.FK_OT_CLIENTE_O_CLIENTES" FromRole="CLIENTES" ToRole="OT" />
+        </EntityType>
+        <EntityType Name="DETALLE">
+          <Key>
+            <PropertyRef Name="PRODUCTO_COD_DETALLE" />
+          </Key>
+          <Property Name="PRODUCTO_COD_DETALLE" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PRODUCTO_COD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="CANTIDAD_MINIMA" Type="Int32" />
+          <Property Name="CANTIDAD_ACTUAL" Type="Int32" />
+          <Property Name="VALOR" Type="Int32" />
+          <NavigationProperty Name="PRODUCTO" Relationship="SIAFModel.FK_DETALLE_DETALLE_P_PRODUCTO" FromRole="DETALLE" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="DETALLE_FACTURA">
+          <Key>
+            <PropertyRef Name="ID_DETALLE_FAC" />
+          </Key>
+          <Property Name="ID_DETALLE_FAC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_FACTURA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FACTURA" Relationship="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA" FromRole="DETALLE_FACTURA" ToRole="FACTURA" />
+          <NavigationProperty Name="OT" Relationship="SIAFModel.FK_OT_DETALLE_F_DETALLE_" FromRole="DETALLE_FACTURA" ToRole="OT" />
+        </EntityType>
+        <EntityType Name="FACTURA">
+          <Key>
+            <PropertyRef Name="ID_FACTURA" />
+          </Key>
+          <Property Name="ID_FACTURA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="NUM_FAC" Type="Int32" />
+          <Property Name="NETO_FAC" Type="Int32" />
+          <Property Name="IVA_FAC" Type="Int32" />
+          <Property Name="TOTAL_FAC" Type="Int32" />
+          <Property Name="CLIENTE_ID" Type="Int32" />
+          <NavigationProperty Name="CLIENTES" Relationship="SIAFModel.FK_FACTURA_CLIENTE_F_CLIENTES" FromRole="FACTURA" ToRole="CLIENTES" />
+          <NavigationProperty Name="DETALLE_FACTURA" Relationship="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA" FromRole="FACTURA" ToRole="DETALLE_FACTURA" />
+        </EntityType>
+        <EntityType Name="OT">
+          <Key>
+            <PropertyRef Name="ID_OT" />
+          </Key>
+          <Property Name="ID_OT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_DETALLE_FAC" Type="Int32" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="CLIENTE_OT" Type="Int32" />
+          <Property Name="NETO_OT" Type="Int32" />
+          <Property Name="FECHA_OT" Type="DateTime" />
+          <Property Name="ESTADO" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CLIENTES" Relationship="SIAFModel.FK_OT_CLIENTE_O_CLIENTES" FromRole="OT" ToRole="CLIENTES" />
+          <NavigationProperty Name="DETALLE_FACTURA" Relationship="SIAFModel.FK_OT_DETALLE_F_DETALLE_" FromRole="OT" ToRole="DETALLE_FACTURA" />
+          <NavigationProperty Name="SUCURSAL" Relationship="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" FromRole="OT" ToRole="SUCURSAL" />
+          <NavigationProperty Name="PRODUCTOS_OT" Relationship="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" FromRole="OT" ToRole="PRODUCTOS_OT" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="PRODUCTO_COD" />
+          </Key>
+          <Property Name="PRODUCTO_COD" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ID_TIPO" Type="Int32" Nullable="false" />
+          <Property Name="COD_BODEGA" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="NOMBRE_PRODUCTO" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="COD_BARRA" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BODEGA" Relationship="SIAFModel.FK_PRODUCTO_BODEGA_PR_BODEGA" FromRole="PRODUCTO" ToRole="BODEGA" />
+          <NavigationProperty Name="DETALLE" Relationship="SIAFModel.FK_DETALLE_DETALLE_P_PRODUCTO" FromRole="PRODUCTO" ToRole="DETALLE" />
+          <NavigationProperty Name="PRODUCTOS_OT" Relationship="SIAFModel.FK_PRODUCTO_PRODUCTO__PRODUCTO" FromRole="PRODUCTO" ToRole="PRODUCTOS_OT" />
+          <NavigationProperty Name="TIPO" Relationship="SIAFModel.FK_PRODUCTO_TIPO_PROD_TIPO" FromRole="PRODUCTO" ToRole="TIPO" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS_OT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO_OT" />
+          </Key>
+          <Property Name="ID_PRODUCTO_OT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCTO_COD" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ID_OT" Type="Int32" />
+          <NavigationProperty Name="OT" Relationship="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" FromRole="PRODUCTOS_OT" ToRole="OT" />
+          <NavigationProperty Name="PRODUCTO" Relationship="SIAFModel.FK_PRODUCTO_PRODUCTO__PRODUCTO" FromRole="PRODUCTOS_OT" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <Property Name="DIRECCION_SUCURSAL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TELEFONO_SUCURSAL" Type="Int32" />
+          <NavigationProperty Name="OT" Relationship="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" FromRole="SUCURSAL" ToRole="OT" />
+          <NavigationProperty Name="USUARIO" Relationship="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO" FromRole="SUCURSAL" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_TIPO" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="SIAFModel.FK_PRODUCTO_TIPO_PROD_TIPO" FromRole="TIPO" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PASSWORD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PERFIL" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="APELLIDO_USUARIO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SUCURSAL" Relationship="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO" FromRole="USUARIO" ToRole="SUCURSAL" />
+        </EntityType>
+        <Association Name="FK_PRODUCTO_BODEGA_PR_BODEGA">
+          <End Role="BODEGA" Type="SIAFModel.BODEGA" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="SIAFModel.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BODEGA">
+              <PropertyRef Name="COD_BODEGA" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="COD_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURA_CLIENTE_F_CLIENTES">
+          <End Role="CLIENTES" Type="SIAFModel.CLIENTES" Multiplicity="1" />
+          <End Role="FACTURA" Type="SIAFModel.FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="FACTURA">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OT_CLIENTE_O_CLIENTES">
+          <End Role="CLIENTES" Type="SIAFModel.CLIENTES" Multiplicity="1" />
+          <End Role="OT" Type="SIAFModel.OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="OT">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_DETALLE_P_PRODUCTO">
+          <End Role="PRODUCTO" Type="SIAFModel.PRODUCTO" Multiplicity="0..1" />
+          <End Role="DETALLE" Type="SIAFModel.DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Principal>
+            <Dependent Role="DETALLE">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__FACTURA_D_FACTURA">
+          <End Role="FACTURA" Type="SIAFModel.FACTURA" Multiplicity="1" />
+          <End Role="DETALLE_FACTURA" Type="SIAFModel.DETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTURA">
+              <PropertyRef Name="ID_FACTURA" />
+            </Principal>
+            <Dependent Role="DETALLE_FACTURA">
+              <PropertyRef Name="ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OT_DETALLE_F_DETALLE_">
+          <End Role="DETALLE_FACTURA" Type="SIAFModel.DETALLE_FACTURA" Multiplicity="1" />
+          <End Role="OT" Type="SIAFModel.OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DETALLE_FACTURA">
+              <PropertyRef Name="ID_DETALLE_FAC" />
+            </Principal>
+            <Dependent Role="OT">
+              <PropertyRef Name="ID_DETALLE_FAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OT_SUCURSAL__SUCURSAL">
+          <End Role="SUCURSAL" Type="SIAFModel.SUCURSAL" Multiplicity="1" />
+          <End Role="OT" Type="SIAFModel.OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="OT">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_OT_DETALL_OT">
+          <End Role="OT" Type="SIAFModel.OT" Multiplicity="0..1" />
+          <End Role="PRODUCTOS_OT" Type="SIAFModel.PRODUCTOS_OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OT">
+              <PropertyRef Name="ID_OT" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_OT">
+              <PropertyRef Name="ID_OT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_PRODUCTO__PRODUCTO">
+          <End Role="PRODUCTO" Type="SIAFModel.PRODUCTO" Multiplicity="1" />
+          <End Role="PRODUCTOS_OT" Type="SIAFModel.PRODUCTOS_OT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_OT">
+              <PropertyRef Name="PRODUCTO_COD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_TIPO_PROD_TIPO">
+          <End Role="TIPO" Type="SIAFModel.TIPO" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="SIAFModel.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUCURSAL_USUARIO_S_USUARIO">
+          <End Role="USUARIO" Type="SIAFModel.USUARIO" Multiplicity="0..1" />
+          <End Role="SUCURSAL" Type="SIAFModel.SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="SUCURSAL">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIAFModelStoreContainer" CdmEntityContainer="SIAFEntities">
+          <EntitySetMapping Name="BODEGA">
+            <EntityTypeMapping TypeName="SIAFModel.BODEGA">
+              <MappingFragment StoreEntitySet="BODEGA">
+                <ScalarProperty Name="COD_BODEGA" ColumnName="COD_BODEGA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="SIAFModel.CLIENTES">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="TELEFONO_CLIENTE" ColumnName="TELEFONO_CLIENTE" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="DIRECCION_CLIENTE" ColumnName="DIRECCION_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE">
+            <EntityTypeMapping TypeName="SIAFModel.DETALLE">
+              <MappingFragment StoreEntitySet="DETALLE">
+                <ScalarProperty Name="PRODUCTO_COD_DETALLE" ColumnName="PRODUCTO_COD_DETALLE" />
+                <ScalarProperty Name="PRODUCTO_COD" ColumnName="PRODUCTO_COD" />
+                <ScalarProperty Name="CANTIDAD_MINIMA" ColumnName="CANTIDAD_MINIMA" />
+                <ScalarProperty Name="CANTIDAD_ACTUAL" ColumnName="CANTIDAD_ACTUAL" />
+                <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_FACTURA">
+            <EntityTypeMapping TypeName="SIAFModel.DETALLE_FACTURA">
+              <MappingFragment StoreEntitySet="DETALLE_FACTURA">
+                <ScalarProperty Name="ID_DETALLE_FAC" ColumnName="ID_DETALLE_FAC" />
+                <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURA">
+            <EntityTypeMapping TypeName="SIAFModel.FACTURA">
+              <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="NUM_FAC" ColumnName="NUM_FAC" />
+                <ScalarProperty Name="NETO_FAC" ColumnName="NETO_FAC" />
+                <ScalarProperty Name="IVA_FAC" ColumnName="IVA_FAC" />
+                <ScalarProperty Name="TOTAL_FAC" ColumnName="TOTAL_FAC" />
+                <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OT">
+            <EntityTypeMapping TypeName="SIAFModel.OT">
+              <MappingFragment StoreEntitySet="OT">
+                <ScalarProperty Name="ID_OT" ColumnName="ID_OT" />
+                <ScalarProperty Name="ID_DETALLE_FAC" ColumnName="ID_DETALLE_FAC" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="CLIENTE_OT" ColumnName="CLIENTE_OT" />
+                <ScalarProperty Name="NETO_OT" ColumnName="NETO_OT" />
+                <ScalarProperty Name="FECHA_OT" ColumnName="FECHA_OT" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="SIAFModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="PRODUCTO_COD" ColumnName="PRODUCTO_COD" />
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="COD_BODEGA" ColumnName="COD_BODEGA" />
+                <ScalarProperty Name="NOMBRE_PRODUCTO" ColumnName="NOMBRE_PRODUCTO" />
+                <ScalarProperty Name="COD_BARRA" ColumnName="COD_BARRA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS_OT">
+            <EntityTypeMapping TypeName="SIAFModel.PRODUCTOS_OT">
+              <MappingFragment StoreEntitySet="PRODUCTOS_OT">
+                <ScalarProperty Name="ID_PRODUCTO_OT" ColumnName="ID_PRODUCTO_OT" />
+                <ScalarProperty Name="PRODUCTO_COD" ColumnName="PRODUCTO_COD" />
+                <ScalarProperty Name="ID_OT" ColumnName="ID_OT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUCURSAL">
+            <EntityTypeMapping TypeName="SIAFModel.SUCURSAL">
+              <MappingFragment StoreEntitySet="SUCURSAL">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="DIRECCION_SUCURSAL" ColumnName="DIRECCION_SUCURSAL" />
+                <ScalarProperty Name="TELEFONO_SUCURSAL" ColumnName="TELEFONO_SUCURSAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SIAFModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO">
+            <EntityTypeMapping TypeName="SIAFModel.TIPO">
+              <MappingFragment StoreEntitySet="TIPO">
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="NOMBRE_TIPO" ColumnName="NOMBRE_TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="SIAFModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PERFIL" ColumnName="PERFIL" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="APELLIDO_USUARIO" ColumnName="APELLIDO_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ModelEntidades">
+        <EntityTypeShape EntityType="SIAFModel.BODEGA" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.CLIENTES" Width="1.5" PointX="0.75" PointY="7.875" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.DETALLE" Width="1.5" PointX="5.25" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.DETALLE_FACTURA" Width="1.5" PointX="0.75" PointY="11.625" Height="1.7879850260416639" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.FACTURA" Width="1.5" PointX="1.5" PointY="15.125" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="10.625" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.PRODUCTO" Width="1.5" PointX="3" PointY="3.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.PRODUCTOS_OT" Width="1.5" PointX="5.25" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="18.625" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="7" Height="1.9802864583333308" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.TIPO" Width="1.5" PointX="0.75" PointY="1" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.USUARIO" Width="1.5" PointX="1.5" PointY="21.625" Height="2.1725878906250031" IsExpanded="true" />
+        <AssociationConnector Association="SIAFModel.FK_PRODUCTO_BODEGA_PR_BODEGA" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
+          <ConnectorPoint PointX="3" PointY="4.797841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_FACTURA_CLIENTE_F_CLIENTES" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.2500000000000004" PointY="10.432190755208332" />
+          <ConnectorPoint PointX="2.625" PointY="10.807190755208332" />
+          <ConnectorPoint PointX="2.625" PointY="14.75" />
+          <ConnectorPoint PointX="3.3761528461538468" PointY="14.75" />
+          <ConnectorPoint PointX="3" PointY="15.126152846153847" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_OT_CLIENTE_O_CLIENTES" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.7062361067708309" />
+          <ConnectorPoint PointX="4.40625" PointY="9.7062361067708309" />
+          <ConnectorPoint PointX="4.40625" PointY="10.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_DETALLE_DETALLE_P_PRODUCTO" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.7112939453125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="4.7112939453124989" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="4.7112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="4.7112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.875" PointY="15.125" />
+          <ConnectorPoint PointX="1.875" PointY="13.412985026041664" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_OT_DETALLE_F_DETALLE_" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="12.518992513020832" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="12.518992513020832" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="12.518992513020832" />
+          <ConnectorPoint PointX="3" PointY="12.518992513020832" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="19.711293945312498" />
+          <ConnectorPoint PointX="3.78125" PointY="19.711293945312498" />
+          <ConnectorPoint PointX="3.78125" PointY="13.951396484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.626152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="10.251152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="1.7401432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_PRODUCTO_PRODUCTO__PRODUCTO" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="3.375" />
+          <ConnectorPoint PointX="3.75" PointY="2.2664673437499996" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="2.2664673437499991" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="2.2664673437499996" />
+          <ConnectorPoint PointX="5.25" PointY="2.2664673437499996" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_PRODUCTO_TIPO_PROD_TIPO" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.6332336718749998" />
+          <ConnectorPoint PointX="3.3437475" PointY="1.6332336718749998" />
+          <ConnectorPoint PointX="3.3437475" PointY="3.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="SIAFModel.FK_SUCURSAL_USUARIO_S_USUARIO" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.875" PointY="21.625" />
+          <ConnectorPoint PointX="1.875" PointY="20.797587890624996" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

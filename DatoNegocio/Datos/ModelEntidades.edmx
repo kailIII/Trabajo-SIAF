@@ -22,6 +22,10 @@
             <End Role="FACTURA" EntitySet="FACTURA" />
             <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
           </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__RELATIONS_OT" Association="SIAFModel.Store.FK_DETALLE__RELATIONS_OT">
+            <End Role="OT" EntitySet="OT" />
+            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+          </AssociationSet>
           <AssociationSet Name="FK_DETALLE_DETALLE_P_PRODUCTO" Association="SIAFModel.Store.FK_DETALLE_DETALLE_P_PRODUCTO">
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
             <End Role="DETALLE" EntitySet="DETALLE" />
@@ -32,10 +36,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_OT_CLIENTE_O_CLIENTES" Association="SIAFModel.Store.FK_OT_CLIENTE_O_CLIENTES">
             <End Role="CLIENTES" EntitySet="CLIENTES" />
-            <End Role="OT" EntitySet="OT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OT_DETALLE_F_DETALLE_" Association="SIAFModel.Store.FK_OT_DETALLE_F_DETALLE_">
-            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
             <End Role="OT" EntitySet="OT" />
           </AssociationSet>
           <AssociationSet Name="FK_OT_SUCURSAL__SUCURSAL" Association="SIAFModel.Store.FK_OT_SUCURSAL__SUCURSAL">
@@ -96,6 +96,7 @@
             <PropertyRef Name="ID_DETALLE_FAC" />
           </Key>
           <Property Name="ID_DETALLE_FAC" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_OT" Type="int" />
           <Property Name="ID_FACTURA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FACTURA">
@@ -115,7 +116,6 @@
             <PropertyRef Name="ID_OT" />
           </Key>
           <Property Name="ID_OT" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ID_DETALLE_FAC" Type="int" Nullable="false" />
           <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
           <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
           <Property Name="CLIENTE_OT" Type="int" />
@@ -189,6 +189,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DETALLE__RELATIONS_OT">
+          <End Role="OT" Type="SIAFModel.Store.OT" Multiplicity="0..1" />
+          <End Role="DETALLE_FACTURA" Type="SIAFModel.Store.DETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OT">
+              <PropertyRef Name="ID_OT" />
+            </Principal>
+            <Dependent Role="DETALLE_FACTURA">
+              <PropertyRef Name="ID_OT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DETALLE_DETALLE_P_PRODUCTO">
           <End Role="PRODUCTO" Type="SIAFModel.Store.PRODUCTO" Multiplicity="0..1" />
           <End Role="DETALLE" Type="SIAFModel.Store.DETALLE" Multiplicity="*" />
@@ -222,18 +234,6 @@
             </Principal>
             <Dependent Role="OT">
               <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OT_DETALLE_F_DETALLE_">
-          <End Role="DETALLE_FACTURA" Type="SIAFModel.Store.DETALLE_FACTURA" Multiplicity="1" />
-          <End Role="OT" Type="SIAFModel.Store.OT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DETALLE_FACTURA">
-              <PropertyRef Name="ID_DETALLE_FAC" />
-            </Principal>
-            <Dependent Role="OT">
-              <PropertyRef Name="ID_DETALLE_FAC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -347,9 +347,9 @@
             <End Role="FACTURA" EntitySet="FACTURA" />
             <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
           </AssociationSet>
-          <AssociationSet Name="FK_OT_DETALLE_F_DETALLE_" Association="SIAFModel.FK_OT_DETALLE_F_DETALLE_">
-            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+          <AssociationSet Name="FK_DETALLE__RELATIONS_OT" Association="SIAFModel.FK_DETALLE__RELATIONS_OT">
             <End Role="OT" EntitySet="OT" />
+            <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
           </AssociationSet>
           <AssociationSet Name="FK_OT_SUCURSAL__SUCURSAL" Association="SIAFModel.FK_OT_SUCURSAL__SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
@@ -409,9 +409,10 @@
             <PropertyRef Name="ID_DETALLE_FAC" />
           </Key>
           <Property Name="ID_DETALLE_FAC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_OT" Type="Int32" />
           <Property Name="ID_FACTURA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FACTURA" Relationship="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA" FromRole="DETALLE_FACTURA" ToRole="FACTURA" />
-          <NavigationProperty Name="OT" Relationship="SIAFModel.FK_OT_DETALLE_F_DETALLE_" FromRole="DETALLE_FACTURA" ToRole="OT" />
+          <NavigationProperty Name="OT" Relationship="SIAFModel.FK_DETALLE__RELATIONS_OT" FromRole="DETALLE_FACTURA" ToRole="OT" />
         </EntityType>
         <EntityType Name="FACTURA">
           <Key>
@@ -432,7 +433,6 @@
             <PropertyRef Name="ID_OT" />
           </Key>
           <Property Name="ID_OT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_DETALLE_FAC" Type="Int32" Nullable="false" />
           <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
           <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
           <Property Name="CLIENTE_OT" Type="Int32" />
@@ -440,7 +440,7 @@
           <Property Name="FECHA_OT" Type="DateTime" />
           <Property Name="ESTADO" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="CLIENTES" Relationship="SIAFModel.FK_OT_CLIENTE_O_CLIENTES" FromRole="OT" ToRole="CLIENTES" />
-          <NavigationProperty Name="DETALLE_FACTURA" Relationship="SIAFModel.FK_OT_DETALLE_F_DETALLE_" FromRole="OT" ToRole="DETALLE_FACTURA" />
+          <NavigationProperty Name="DETALLE_FACTURA" Relationship="SIAFModel.FK_DETALLE__RELATIONS_OT" FromRole="OT" ToRole="DETALLE_FACTURA" />
           <NavigationProperty Name="SUCURSAL" Relationship="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" FromRole="OT" ToRole="SUCURSAL" />
           <NavigationProperty Name="PRODUCTOS_OT" Relationship="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" FromRole="OT" ToRole="PRODUCTOS_OT" />
         </EntityType>
@@ -568,15 +568,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OT_DETALLE_F_DETALLE_">
-          <End Role="DETALLE_FACTURA" Type="SIAFModel.DETALLE_FACTURA" Multiplicity="1" />
-          <End Role="OT" Type="SIAFModel.OT" Multiplicity="*" />
+        <Association Name="FK_DETALLE__RELATIONS_OT">
+          <End Role="OT" Type="SIAFModel.OT" Multiplicity="0..1" />
+          <End Role="DETALLE_FACTURA" Type="SIAFModel.DETALLE_FACTURA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DETALLE_FACTURA">
-              <PropertyRef Name="ID_DETALLE_FAC" />
+            <Principal Role="OT">
+              <PropertyRef Name="ID_OT" />
             </Principal>
-            <Dependent Role="OT">
-              <PropertyRef Name="ID_DETALLE_FAC" />
+            <Dependent Role="DETALLE_FACTURA">
+              <PropertyRef Name="ID_OT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -681,6 +681,7 @@
             <EntityTypeMapping TypeName="SIAFModel.DETALLE_FACTURA">
               <MappingFragment StoreEntitySet="DETALLE_FACTURA">
                 <ScalarProperty Name="ID_DETALLE_FAC" ColumnName="ID_DETALLE_FAC" />
+                <ScalarProperty Name="ID_OT" ColumnName="ID_OT" />
                 <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -702,7 +703,6 @@
             <EntityTypeMapping TypeName="SIAFModel.OT">
               <MappingFragment StoreEntitySet="OT">
                 <ScalarProperty Name="ID_OT" ColumnName="ID_OT" />
-                <ScalarProperty Name="ID_DETALLE_FAC" ColumnName="ID_DETALLE_FAC" />
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
                 <ScalarProperty Name="CLIENTE_OT" ColumnName="CLIENTE_OT" />
@@ -794,32 +794,30 @@
     <Diagrams>
       <Diagram Name="ModelEntidades">
         <EntityTypeShape EntityType="SIAFModel.BODEGA" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.CLIENTES" Width="1.5" PointX="0.75" PointY="7.875" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.CLIENTES" Width="1.5" PointX="0.75" PointY="7.625" Height="2.5571907552083308" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.DETALLE" Width="1.5" PointX="5.25" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.DETALLE_FACTURA" Width="1.5" PointX="0.75" PointY="11.625" Height="1.7879850260416639" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.FACTURA" Width="1.5" PointX="1.5" PointY="15.125" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="10.5" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.DETALLE_FACTURA" Width="1.5" PointX="5.25" PointY="11.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.FACTURA" Width="1.5" PointX="3" PointY="13.5" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="8.75" Height="3.1340950520833317" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.PRODUCTO" Width="1.5" PointX="3" PointY="3.375" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.PRODUCTOS_OT" Width="1.5" PointX="5.25" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="18.625" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="7" Height="1.9802864583333308" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="10.875" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7" Height="1.9802864583333308" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.TIPO" Width="1.5" PointX="0.75" PointY="1" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.USUARIO" Width="1.5" PointX="3" PointY="19.375" Height="2.3648893229166745" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.USUARIO" Width="1.5" PointX="3" PointY="17.75" Height="2.3648893229166745" IsExpanded="true" />
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_BODEGA_PR_BODEGA" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
           <ConnectorPoint PointX="3" PointY="4.797841796875" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_FACTURA_CLIENTE_F_CLIENTES" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.2500000000000004" PointY="10.432190755208332" />
-          <ConnectorPoint PointX="2.625" PointY="10.807190755208332" />
-          <ConnectorPoint PointX="2.625" PointY="14.75" />
-          <ConnectorPoint PointX="3.3761528461538468" PointY="14.75" />
-          <ConnectorPoint PointX="3" PointY="15.126152846153847" />
+          <ConnectorPoint PointX="2.2499999999999987" PointY="10.182190755208332" />
+          <ConnectorPoint PointX="2.625" PointY="10.557190755208332" />
+          <ConnectorPoint PointX="2.625" PointY="14.874746093749998" />
+          <ConnectorPoint PointX="3" PointY="14.874746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_OT_CLIENTE_O_CLIENTES" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="9.7062361067708309" />
-          <ConnectorPoint PointX="4.40625" PointY="9.7062361067708309" />
-          <ConnectorPoint PointX="4.40625" PointY="10.5" />
+          <ConnectorPoint PointX="2.25" PointY="9.4348428776041651" />
+          <ConnectorPoint PointX="3" PointY="9.4348428776041651" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_DETALLE_DETALLE_P_PRODUCTO" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="4.7112939453125" />
@@ -828,24 +826,23 @@
           <ConnectorPoint PointX="5.25" PointY="4.7112939453125" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="15.125" />
-          <ConnectorPoint PointX="1.875" PointY="13.412985026041664" />
+          <ConnectorPoint PointX="4.5" PointY="14.87474609375" />
+          <ConnectorPoint PointX="6" PointY="14.87474609375" />
+          <ConnectorPoint PointX="6" PointY="13.480286458333332" />
         </AssociationConnector>
-        <AssociationConnector Association="SIAFModel.FK_OT_DETALLE_F_DETALLE_" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="12.518992513020832" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="12.518992513020832" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="12.518992513020832" />
-          <ConnectorPoint PointX="3" PointY="12.518992513020832" />
+        <AssociationConnector Association="SIAFModel.FK_DETALLE__RELATIONS_OT" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.692047526041666" />
+          <ConnectorPoint PointX="5.25" PointY="11.692047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="18.626152846153843" />
-          <ConnectorPoint PointX="2.6261528461538433" PointY="18.25" />
-          <ConnectorPoint PointX="3.781252" PointY="18.25" />
-          <ConnectorPoint PointX="3.781252" PointY="13.826396484375" />
+          <ConnectorPoint PointX="2.25" PointY="11.379547526041666" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="11.379547526041666" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="11.379547526041666" />
+          <ConnectorPoint PointX="3" PointY="11.379547526041666" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="10.501152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="10.126152846153847" />
+          <ConnectorPoint PointX="4.5" PointY="8.7511528461538468" />
+          <ConnectorPoint PointX="4.875" PointY="8.3761528461538468" />
           <ConnectorPoint PointX="4.875" PointY="1.7401432291666659" />
           <ConnectorPoint PointX="5.25" PointY="1.7401432291666659" />
         </AssociationConnector>
@@ -862,8 +859,9 @@
           <ConnectorPoint PointX="3.3437475" PointY="3.375" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="19.990143229166666" />
-          <ConnectorPoint PointX="3" PointY="19.990143229166666" />
+          <ConnectorPoint PointX="1.5" PointY="12.855286458333332" />
+          <ConnectorPoint PointX="1.5" PointY="18.932444661458337" />
+          <ConnectorPoint PointX="3" PointY="18.932444661458337" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -24,7 +24,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_OT_CLIENTE_O_CLIENTES", "CLIENTES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.CLIENTES), "OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.OT), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_DETALLE_DETALLE_P_PRODUCTO", "PRODUCTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Datos.PRODUCTO), "DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_DETALLE__FACTURA_D_FACTURA", "FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.FACTURA), "DETALLE_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.DETALLE_FACTURA), true)]
-[assembly: EdmRelationshipAttribute("SIAFModel", "FK_OT_DETALLE_F_DETALLE_", "DETALLE_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.DETALLE_FACTURA), "OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.OT), true)]
+[assembly: EdmRelationshipAttribute("SIAFModel", "FK_DETALLE__RELATIONS_OT", "OT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Datos.OT), "DETALLE_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.DETALLE_FACTURA), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_OT_SUCURSAL__SUCURSAL", "SUCURSAL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.SUCURSAL), "OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.OT), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_PRODUCTO_OT_DETALL_OT", "OT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Datos.OT), "PRODUCTOS_OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.PRODUCTOS_OT), true)]
 [assembly: EdmRelationshipAttribute("SIAFModel", "FK_PRODUCTO_PRODUCTO__PRODUCTO", "PRODUCTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Datos.PRODUCTO), "PRODUCTOS_OT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Datos.PRODUCTOS_OT), true)]
@@ -965,6 +965,30 @@ namespace Datos
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ID_OT
+        {
+            get
+            {
+                return _ID_OT;
+            }
+            set
+            {
+                OnID_OTChanging(value);
+                ReportPropertyChanging("ID_OT");
+                _ID_OT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_OT");
+                OnID_OTChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ID_OT;
+        partial void OnID_OTChanging(Nullable<global::System.Int32> value);
+        partial void OnID_OTChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 ID_FACTURA
@@ -1035,18 +1059,34 @@ namespace Datos
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_OT_DETALLE_F_DETALLE_", "OT")]
-        public EntityCollection<OT> OT
+        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_DETALLE__RELATIONS_OT", "OT")]
+        public OT OT
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OT>("SIAFModel.FK_OT_DETALLE_F_DETALLE_", "OT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OT>("SIAFModel.FK_DETALLE__RELATIONS_OT", "OT").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OT>("SIAFModel.FK_DETALLE__RELATIONS_OT", "OT").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<OT> OTReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OT>("SIAFModel.FK_DETALLE__RELATIONS_OT", "OT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OT>("SIAFModel.FK_OT_DETALLE_F_DETALLE_", "OT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OT>("SIAFModel.FK_DETALLE__RELATIONS_OT", "OT", value);
                 }
             }
         }
@@ -1336,14 +1376,12 @@ namespace Datos
         /// Crear un nuevo objeto OT.
         /// </summary>
         /// <param name="iD_OT">Valor inicial de la propiedad ID_OT.</param>
-        /// <param name="iD_DETALLE_FAC">Valor inicial de la propiedad ID_DETALLE_FAC.</param>
         /// <param name="iD_SUCURSAL">Valor inicial de la propiedad ID_SUCURSAL.</param>
         /// <param name="iD_CLIENTE">Valor inicial de la propiedad ID_CLIENTE.</param>
-        public static OT CreateOT(global::System.Int32 iD_OT, global::System.Int32 iD_DETALLE_FAC, global::System.Int32 iD_SUCURSAL, global::System.Int32 iD_CLIENTE)
+        public static OT CreateOT(global::System.Int32 iD_OT, global::System.Int32 iD_SUCURSAL, global::System.Int32 iD_CLIENTE)
         {
             OT oT = new OT();
             oT.ID_OT = iD_OT;
-            oT.ID_DETALLE_FAC = iD_DETALLE_FAC;
             oT.ID_SUCURSAL = iD_SUCURSAL;
             oT.ID_CLIENTE = iD_CLIENTE;
             return oT;
@@ -1379,30 +1417,6 @@ namespace Datos
         private global::System.Int32 _ID_OT;
         partial void OnID_OTChanging(global::System.Int32 value);
         partial void OnID_OTChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID_DETALLE_FAC
-        {
-            get
-            {
-                return _ID_DETALLE_FAC;
-            }
-            set
-            {
-                OnID_DETALLE_FACChanging(value);
-                ReportPropertyChanging("ID_DETALLE_FAC");
-                _ID_DETALLE_FAC = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ID_DETALLE_FAC");
-                OnID_DETALLE_FACChanged();
-            }
-        }
-        private global::System.Int32 _ID_DETALLE_FAC;
-        partial void OnID_DETALLE_FACChanging(global::System.Int32 value);
-        partial void OnID_DETALLE_FACChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1597,34 +1611,18 @@ namespace Datos
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_OT_DETALLE_F_DETALLE_", "DETALLE_FACTURA")]
-        public DETALLE_FACTURA DETALLE_FACTURA
+        [EdmRelationshipNavigationPropertyAttribute("SIAFModel", "FK_DETALLE__RELATIONS_OT", "DETALLE_FACTURA")]
+        public EntityCollection<DETALLE_FACTURA> DETALLE_FACTURA
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DETALLE_FACTURA>("SIAFModel.FK_OT_DETALLE_F_DETALLE_", "DETALLE_FACTURA").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DETALLE_FACTURA>("SIAFModel.FK_OT_DETALLE_F_DETALLE_", "DETALLE_FACTURA").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<DETALLE_FACTURA> DETALLE_FACTURAReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DETALLE_FACTURA>("SIAFModel.FK_OT_DETALLE_F_DETALLE_", "DETALLE_FACTURA");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DETALLE_FACTURA>("SIAFModel.FK_DETALLE__RELATIONS_OT", "DETALLE_FACTURA");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DETALLE_FACTURA>("SIAFModel.FK_OT_DETALLE_F_DETALLE_", "DETALLE_FACTURA", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DETALLE_FACTURA>("SIAFModel.FK_DETALLE__RELATIONS_OT", "DETALLE_FACTURA", value);
                 }
             }
         }

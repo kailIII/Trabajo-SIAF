@@ -7,7 +7,7 @@ using Datos;
 
 namespace Negocio
 {
-    class DetalleNeg
+    public class DetalleNeg
     {
         #region constructorEntidades
         SIAFEntities ModeloEntidades { get; set; }

@@ -8,7 +8,7 @@ using Negocio;
 
 namespace Negocio
 {
-    class ClienteNeg
+    public class ClienteNeg
     {
         #region constructorEntidades
         SIAFEntities ModeloEntidades { get; set; }

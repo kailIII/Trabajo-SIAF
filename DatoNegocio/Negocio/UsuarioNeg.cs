@@ -36,7 +36,7 @@ namespace Negocio
         #endregion
 
         #region Modificar Usuario By ID
-        public int ModificarUsuarioByID(int id,int id_sucursal, String password, String perfil, String nombre, String apellido)
+        public int ModificarUsuarioByID(int id,int id_sucursal, String password, String perfil, String nombre, String apellido, string usuario1)
         {
             int resultado = 0;
             USUARIO usuario = new USUARIO();
@@ -44,6 +44,8 @@ namespace Negocio
             usuario.ID_SUCURSAL = id_sucursal;
             usuario.PASSWORD = password;
             usuario.PERFIL = perfil;
+            usuario.USUARIO1 = usuario1;
+
             usuario.NOMBRE_USUARIO = nombre;
             usuario.APELLIDO_USUARIO = apellido;
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.USUARIO", usuario);

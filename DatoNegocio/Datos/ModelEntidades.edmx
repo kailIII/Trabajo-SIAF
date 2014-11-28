@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIAFModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="SIAFModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SIAFModelStoreContainer">
           <EntitySet Name="BODEGA" EntityType="SIAFModel.Store.BODEGA" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CLIENTES" EntityType="SIAFModel.Store.CLIENTES" store:Type="Tables" Schema="dbo" />
@@ -109,7 +109,7 @@
           <Property Name="NETO_FAC" Type="int" />
           <Property Name="IVA_FAC" Type="int" />
           <Property Name="TOTAL_FAC" Type="int" />
-          <Property Name="CLIENTE_ID" Type="int" />
+          <Property Name="FECHA_FAC" Type="date" />
         </EntityType>
         <EntityType Name="OT">
           <Key>
@@ -118,7 +118,6 @@
           <Property Name="ID_OT" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
           <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
-          <Property Name="CLIENTE_OT" Type="int" />
           <Property Name="NETO_OT" Type="int" />
           <Property Name="FECHA_OT" Type="datetime" />
           <Property Name="ESTADO" Type="varchar" MaxLength="10" />
@@ -176,6 +175,7 @@
           <Property Name="PERFIL" Type="varchar" MaxLength="10" />
           <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="50" />
           <Property Name="APELLIDO_USUARIO" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_DETALLE__FACTURA_D_FACTURA">
           <End Role="FACTURA" Type="SIAFModel.Store.FACTURA" Multiplicity="1" />
@@ -309,8 +309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIAFModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -424,9 +423,9 @@
           <Property Name="NETO_FAC" Type="Int32" />
           <Property Name="IVA_FAC" Type="Int32" />
           <Property Name="TOTAL_FAC" Type="Int32" />
-          <Property Name="CLIENTE_ID" Type="Int32" />
           <NavigationProperty Name="CLIENTES" Relationship="SIAFModel.FK_FACTURA_CLIENTE_F_CLIENTES" FromRole="FACTURA" ToRole="CLIENTES" />
           <NavigationProperty Name="DETALLE_FACTURA" Relationship="SIAFModel.FK_DETALLE__FACTURA_D_FACTURA" FromRole="FACTURA" ToRole="DETALLE_FACTURA" />
+          <Property Type="DateTime" Name="FECHA_FAC" />
         </EntityType>
         <EntityType Name="OT">
           <Key>
@@ -435,7 +434,6 @@
           <Property Name="ID_OT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
           <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
-          <Property Name="CLIENTE_OT" Type="Int32" />
           <Property Name="NETO_OT" Type="Int32" />
           <Property Name="FECHA_OT" Type="DateTime" />
           <Property Name="ESTADO" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
@@ -507,6 +505,7 @@
           <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="APELLIDO_USUARIO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="SUCURSAL" Relationship="SIAFModel.FK_USUARIO_SUCURSAL__SUCURSAL" FromRole="USUARIO" ToRole="SUCURSAL" />
+          <Property Type="String" Name="USUARIO1" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_PRODUCTO_BODEGA_PR_BODEGA">
           <End Role="BODEGA" Type="SIAFModel.BODEGA" Multiplicity="1" />
@@ -689,13 +688,13 @@
           <EntitySetMapping Name="FACTURA">
             <EntityTypeMapping TypeName="SIAFModel.FACTURA">
               <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="FECHA_FAC" ColumnName="FECHA_FAC" />
                 <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
                 <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
                 <ScalarProperty Name="NUM_FAC" ColumnName="NUM_FAC" />
                 <ScalarProperty Name="NETO_FAC" ColumnName="NETO_FAC" />
                 <ScalarProperty Name="IVA_FAC" ColumnName="IVA_FAC" />
                 <ScalarProperty Name="TOTAL_FAC" ColumnName="TOTAL_FAC" />
-                <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -705,7 +704,6 @@
                 <ScalarProperty Name="ID_OT" ColumnName="ID_OT" />
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
-                <ScalarProperty Name="CLIENTE_OT" ColumnName="CLIENTE_OT" />
                 <ScalarProperty Name="NETO_OT" ColumnName="NETO_OT" />
                 <ScalarProperty Name="FECHA_OT" ColumnName="FECHA_OT" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
@@ -763,6 +761,7 @@
           <EntitySetMapping Name="USUARIO">
             <EntityTypeMapping TypeName="SIAFModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="USUARIO1" ColumnName="USUARIO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
@@ -798,7 +797,7 @@
         <EntityTypeShape EntityType="SIAFModel.DETALLE" Width="1.5" PointX="5.25" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.DETALLE_FACTURA" Width="1.5" PointX="5.25" PointY="11.5" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.FACTURA" Width="1.5" PointX="3" PointY="13.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="8.75" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIAFModel.OT" Width="1.5" PointX="3" PointY="8.75" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.PRODUCTO" Width="1.5" PointX="3" PointY="3.375" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.PRODUCTOS_OT" Width="1.5" PointX="5.25" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="SIAFModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="10.875" Height="1.9802864583333317" IsExpanded="true" />
@@ -831,14 +830,15 @@
           <ConnectorPoint PointX="6" PointY="13.480286458333332" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_DETALLE__RELATIONS_OT" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.692047526041666" />
-          <ConnectorPoint PointX="5.25" PointY="11.692047526041666" />
+          <ConnectorPoint PointX="4.5" PointY="10.271392729166667" />
+          <ConnectorPoint PointX="5.46875" PointY="10.271392729166667" />
+          <ConnectorPoint PointX="5.46875" PointY="11.5" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_OT_SUCURSAL__SUCURSAL" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="11.379547526041666" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="11.379547526041666" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="11.379547526041666" />
-          <ConnectorPoint PointX="3" PointY="11.379547526041666" />
+          <ConnectorPoint PointX="2.25" PointY="11.283396809895834" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="11.283396809895834" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="11.283396809895834" />
+          <ConnectorPoint PointX="3" PointY="11.283396809895834" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_OT_DETALL_OT" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="8.7511528461538468" />
@@ -848,10 +848,8 @@
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_PRODUCTO__PRODUCTO" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="3.375" />
-          <ConnectorPoint PointX="3.75" PointY="2.2664673437499996" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="2.2664673437499991" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="2.2664673437499996" />
-          <ConnectorPoint PointX="5.25" PointY="2.2664673437499996" />
+          <ConnectorPoint PointX="3.75" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="1.7401432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="SIAFModel.FK_PRODUCTO_TIPO_PROD_TIPO" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.6332336718749998" />

@@ -1274,24 +1274,24 @@ namespace Datos
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CLIENTE_ID
+        public Nullable<global::System.DateTime> FECHA_FAC
         {
             get
             {
-                return _CLIENTE_ID;
+                return _FECHA_FAC;
             }
             set
             {
-                OnCLIENTE_IDChanging(value);
-                ReportPropertyChanging("CLIENTE_ID");
-                _CLIENTE_ID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CLIENTE_ID");
-                OnCLIENTE_IDChanged();
+                OnFECHA_FACChanging(value);
+                ReportPropertyChanging("FECHA_FAC");
+                _FECHA_FAC = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_FAC");
+                OnFECHA_FACChanged();
             }
         }
-        private Nullable<global::System.Int32> _CLIENTE_ID;
-        partial void OnCLIENTE_IDChanging(Nullable<global::System.Int32> value);
-        partial void OnCLIENTE_IDChanged();
+        private Nullable<global::System.DateTime> _FECHA_FAC;
+        partial void OnFECHA_FACChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_FACChanged();
 
         #endregion
 
@@ -1465,30 +1465,6 @@ namespace Datos
         private global::System.Int32 _ID_CLIENTE;
         partial void OnID_CLIENTEChanging(global::System.Int32 value);
         partial void OnID_CLIENTEChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CLIENTE_OT
-        {
-            get
-            {
-                return _CLIENTE_OT;
-            }
-            set
-            {
-                OnCLIENTE_OTChanging(value);
-                ReportPropertyChanging("CLIENTE_OT");
-                _CLIENTE_OT = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CLIENTE_OT");
-                OnCLIENTE_OTChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CLIENTE_OT;
-        partial void OnCLIENTE_OTChanging(Nullable<global::System.Int32> value);
-        partial void OnCLIENTE_OTChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -2747,6 +2723,30 @@ namespace Datos
         private global::System.String _APELLIDO_USUARIO;
         partial void OnAPELLIDO_USUARIOChanging(global::System.String value);
         partial void OnAPELLIDO_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String USUARIO1
+        {
+            get
+            {
+                return _USUARIO1;
+            }
+            set
+            {
+                OnUSUARIO1Changing(value);
+                ReportPropertyChanging("USUARIO1");
+                _USUARIO1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("USUARIO1");
+                OnUSUARIO1Changed();
+            }
+        }
+        private global::System.String _USUARIO1;
+        partial void OnUSUARIO1Changing(global::System.String value);
+        partial void OnUSUARIO1Changed();
 
         #endregion
 

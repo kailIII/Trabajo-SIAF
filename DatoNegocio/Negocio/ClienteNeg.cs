@@ -5,6 +5,7 @@ using System.Text;
 using System.Data; //necesario para usar EntityKey 
 using Datos;
 using Negocio;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -20,9 +21,16 @@ namespace Negocio
         #endregion
 
         #region Agregar Cliente
-        public int AgregarUsuario(CLIENTES cliente)
+        public int AgregarCliente()
         {
-            ModeloEntidades.AddToCLIENTES(cliente);
+            Clientes c = new Clientes();
+            CLIENTES cc = new CLIENTES();
+            cc.NOMBRE_CLIENTE = c.Nombre_cliente;
+            cc.DIRECCION_CLIENTE = c.Direccion_cliente;
+            cc.RUT = c.Rut;
+            cc.MAIL = c.Mail;
+            cc.TELEFONO_CLIENTE = c.Telefono_cliente;
+            ModeloEntidades.AddToCLIENTES(cc);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -31,13 +39,20 @@ namespace Negocio
         public int ModificarClienteByID(int id, String nombre, String rut, int telefono, String mail, string direccion)
         {
             int resultado = 0;
+            Clientes c = new Clientes();
             CLIENTES clientes = new CLIENTES();
-            clientes.ID_CLIENTE = id;
-            clientes.NOMBRE_CLIENTE = nombre;
-            clientes.RUT = rut;
-            clientes.TELEFONO_CLIENTE = telefono;
-            clientes.MAIL = mail;
-            clientes.DIRECCION_CLIENTE = direccion;
+            c.Id_cliente = id;
+            c.Nombre_cliente = nombre;
+            c.Rut = rut;
+            c.Telefono_cliente = telefono;
+            c.Mail = mail;
+            c.Direccion_cliente = direccion;
+            clientes.ID_CLIENTE = c.Id_cliente;
+            clientes.NOMBRE_CLIENTE = c.Nombre_cliente;
+            clientes.RUT = c.Rut;
+            clientes.TELEFONO_CLIENTE = c.Telefono_cliente;
+            clientes.MAIL = c.Mail;
+            clientes.DIRECCION_CLIENTE = c.Direccion_cliente;
 
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.CLIENTES", clientes);
             Object ActualizaCliente; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
@@ -51,10 +66,21 @@ namespace Negocio
         #endregion
 
         #region Mostrar All Cliente
-        public List<CLIENTES> MostrarAllCliente()
+        public List<Clientes> MostrarAllCliente()
         {
             var clientes = ModeloEntidades.CLIENTES;
-            return clientes.ToList();
+            List<Clientes> lClie = new List<Clientes>();
+            foreach (CLIENTES cc in clientes)
+            {
+                Clientes cli = new Clientes();
+                cli.Nombre_cliente = cc.NOMBRE_CLIENTE;
+                cli.Direccion_cliente = cc.DIRECCION_CLIENTE;
+                cli.Rut = cc.RUT;
+                cli.Telefono_cliente = int.Parse(cc.TELEFONO_CLIENTE.ToString());
+                cli.Mail = cc.MAIL;
+                lClie.Add(cli);
+            }
+            return lClie;
         }
         #endregion
 

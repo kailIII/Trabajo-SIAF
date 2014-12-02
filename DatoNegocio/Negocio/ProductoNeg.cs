@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Datos;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -19,9 +20,16 @@ namespace Negocio
         #endregion
 
         #region Agregar Producto
-        public int AgregarProducto(PRODUCTO producto)
+        public int AgregarProducto()
         {
-            ModeloEntidades.AddToPRODUCTO(producto);
+            Producto p = new Producto();
+            PRODUCTO pp = new PRODUCTO();
+            pp.ID_TIPO = p.Id_tipo;
+            pp.COD_BODEGA = p.Cod_bodega;
+            pp.NOMBRE_PRODUCTO = p.Nombre_producto;
+            pp.COD_BARRA = pp.COD_BARRA;
+
+            ModeloEntidades.AddToPRODUCTO(pp);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -31,11 +39,18 @@ namespace Negocio
         {
             int resultado = 0;
             PRODUCTO producto = new PRODUCTO();
-            producto.PRODUCTO_COD = producto_cod;
-            producto.ID_TIPO = id_tipo;
-            producto.COD_BODEGA = cod_bodega;
-            producto.NOMBRE_PRODUCTO = nombre;
-            producto.COD_BARRA = cod_barra;
+            Producto p = new Producto();
+            p.Producto_cod = producto_cod;
+            p.Id_tipo = id_tipo;
+            p.Cod_bodega = cod_bodega;
+            p.Nombre_producto = nombre;
+            p.Cod_barra = cod_barra;
+
+            producto.PRODUCTO_COD = p.Producto_cod;
+            producto.ID_TIPO = p.Id_tipo;
+            producto.COD_BODEGA = p.Cod_bodega;
+            producto.NOMBRE_PRODUCTO = p.Nombre_producto;
+            producto.COD_BARRA = p.Cod_barra;
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.PRODUCTO", producto);
             Object ActualizaProducto; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
             if (ModeloEntidades.TryGetObjectByKey(key, out ActualizaProducto))
@@ -48,10 +63,21 @@ namespace Negocio
         #endregion
 
         #region Mostrar All Producto
-        public List<PRODUCTO> MostrarAllProducto()
+        public List<Producto> MostrarAllProducto()
         {
             var producto = ModeloEntidades.PRODUCTO;
-            return producto.ToList();
+            List<Producto> lpro = new List<Producto>();
+            foreach (PRODUCTO p in producto)
+            {
+                Producto pp = new Producto();
+                pp.Producto_cod = p.PRODUCTO_COD;
+                pp.Id_tipo = p.ID_TIPO;
+                pp.Cod_bodega = p.COD_BODEGA;
+                pp.Nombre_producto = p.NOMBRE_PRODUCTO;
+                pp.Cod_barra = p.COD_BARRA;
+                lpro.Add(pp);
+            }
+            return lpro;
         }
         #endregion
 

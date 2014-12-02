@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Datos;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -19,9 +20,16 @@ namespace Negocio
         #endregion
 
         #region Agregar Producto a la ot
-        public int AgregarProductosOt(PRODUCTOS_OT producto_ot)
+        public int AgregarProductosOt()
         {
-            ModeloEntidades.AddToPRODUCTOS_OT(producto_ot);
+            Productos_ot prot = new Productos_ot();
+            PRODUCTOS_OT prott = new PRODUCTOS_OT();
+
+            prott.ID_PRODUCTO_OT = prot.Id_producto_ot;
+            prott.PRODUCTO_COD = prot.Producto_cod;
+            prott.ID_OT = prot.Id_ot;
+
+            ModeloEntidades.AddToPRODUCTOS_OT(prott);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -31,9 +39,13 @@ namespace Negocio
         {
             int resultado = 0;
             PRODUCTOS_OT proOT = new PRODUCTOS_OT();
-            proOT.ID_PRODUCTO_OT = ID_PRODUCTO_OT;
-            proOT.PRODUCTO_COD = PRODUCTO_COD;
-            proOT.ID_OT = ID_OT;
+            Productos_ot pr = new Productos_ot();
+            pr.Id_producto_ot = ID_PRODUCTO_OT;
+            pr.Producto_cod = PRODUCTO_COD;
+            pr.Id_ot = ID_OT;
+            proOT.ID_PRODUCTO_OT = pr.Id_producto_ot;
+            proOT.PRODUCTO_COD = pr.Producto_cod;
+            proOT.ID_OT = pr.Id_ot;
 
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.PRODUCTO_OT", proOT);
             Object ActualizaProductoOt; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
@@ -47,10 +59,21 @@ namespace Negocio
         #endregion
 
         #region Mostrar All Productos OT
-        public List<PRODUCTOS_OT> MostrarAllProductoOT()
+        public List<Productos_ot> MostrarAllProductoOT()
         {
             var productoOt = ModeloEntidades.PRODUCTOS_OT;
-            return productoOt.ToList();
+            List<Productos_ot> lproot = new List<Productos_ot>();
+            foreach (PRODUCTOS_OT proot in productoOt)
+            {
+                Productos_ot pr = new Productos_ot();
+                pr.Id_ot = Convert.ToInt32( proot.ID_OT);
+                pr.Id_producto_ot = proot.ID_PRODUCTO_OT;
+                pr.Producto_cod = proot.PRODUCTO_COD;
+                lproot.Add(pr);
+            }
+
+
+            return lproot;
         }
         #endregion
 

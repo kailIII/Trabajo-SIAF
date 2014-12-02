@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Datos;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -19,9 +20,17 @@ namespace Negocio
         #endregion
 
         #region Agregar Detalle
-        public int AgregarDetalle(DETALLE detalle)
+        public int AgregarDetalle()
         {
-            ModeloEntidades.AddToDETALLE(detalle);
+            Detalle d = new Detalle();
+            DETALLE dd = new DETALLE();
+            dd.PRODUCTO_COD_DETALLE = d.Producto_cod_detalle;
+            dd.PRODUCTO_COD = d.Producto_cod;
+            dd.CANTIDAD_MINIMA = d.Cantidad_actual;
+            dd.CANTIDAD_ACTUAL = d.Cantidad_actual;
+            dd.VALOR = d.Valor;
+
+            ModeloEntidades.AddToDETALLE(dd);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -31,10 +40,16 @@ namespace Negocio
         {
             int resultado = 0;
             DETALLE detalle = new DETALLE();
-            detalle.PRODUCTO_COD_DETALLE = producto_cod_detalle;
-            detalle.PRODUCTO_COD = producto_cod;
-            detalle.CANTIDAD_MINIMA = cant_min;
-            detalle.CANTIDAD_ACTUAL = cant_actual;
+            Detalle d = new Detalle();
+            d.Producto_cod_detalle = producto_cod_detalle;
+            d.Producto_cod = producto_cod;
+            d.Cantidad_minima = cant_min;
+            d.Cantidad_actual = cant_actual;
+            d.Valor = valor;
+            detalle.PRODUCTO_COD_DETALLE = d.Producto_cod_detalle;
+            detalle.PRODUCTO_COD = d.Producto_cod;
+            detalle.CANTIDAD_MINIMA = d.Cantidad_minima;
+            detalle.CANTIDAD_ACTUAL = d.Cantidad_actual;
             detalle.VALOR = valor;
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.DETALLE", detalle);
             Object ActualizaDetalle; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
@@ -48,10 +63,21 @@ namespace Negocio
         #endregion
 
         #region Mostrar All Detalle
-        public List<DETALLE> MostrarAllDetalle()
+        public List<Detalle> MostrarAllDetalle()
         {
+            List<Detalle> lDetalle = new List<Detalle>();
             var detalle = ModeloEntidades.DETALLE;
-            return detalle.ToList();
+            foreach (DETALLE de in detalle)
+            {
+                Detalle dd = new Detalle();
+                dd.Producto_cod_detalle = de.PRODUCTO_COD_DETALLE;
+                dd.Producto_cod = de.PRODUCTO_COD;
+                dd.Cantidad_minima = Convert.ToInt32(de.CANTIDAD_MINIMA);
+                dd.Cantidad_actual = Convert.ToInt32(de.CANTIDAD_ACTUAL);
+                dd.Valor = Convert.ToInt32(de.VALOR);
+                lDetalle.Add(dd);
+            }
+            return lDetalle;
         }
         #endregion
 

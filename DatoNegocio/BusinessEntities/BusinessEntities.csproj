@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{165492DD-FB8B-4F3D-8F1D-592750A3B753}</ProjectGuid>
+    <ProjectGuid>{A87255CF-9EFE-4675-B39C-6C324CCAE49C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Negocio</RootNamespace>
-    <AssemblyName>Negocio</AssemblyName>
+    <RootNamespace>BusinessEntities</RootNamespace>
+    <AssemblyName>BusinessEntities</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,28 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BodegaNeg.cs" />
-    <Compile Include="ClienteNeg.cs" />
-    <Compile Include="DetalleNeg.cs" />
-    <Compile Include="Detalle_facturaNeg.cs" />
-    <Compile Include="FacturaNeg.cs" />
-    <Compile Include="OTNeg.cs" />
-    <Compile Include="ProductoNeg.cs" />
-    <Compile Include="Productos_otNeg.cs" />
+    <Compile Include="Bodega.cs" />
+    <Compile Include="Clientes.cs" />
+    <Compile Include="Detalle.cs" />
+    <Compile Include="Detalle_factura.cs" />
+    <Compile Include="Factura.cs" />
+    <Compile Include="Ot.cs" />
+    <Compile Include="Producto.cs" />
+    <Compile Include="Productos_ot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SucursalNeg.cs" />
-    <Compile Include="TipoNeg.cs" />
-    <Compile Include="UsuarioNeg.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
-      <Project>{A87255CF-9EFE-4675-B39C-6C324CCAE49C}</Project>
-      <Name>BusinessEntities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{F73EC88A-925D-46F6-9CC3-2286257A470D}</Project>
-      <Name>Datos</Name>
-    </ProjectReference>
+    <Compile Include="Sucursal.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="Tipo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

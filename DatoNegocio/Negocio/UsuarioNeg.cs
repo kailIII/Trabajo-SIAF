@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data; //necesario para usar EntityKey 
 using Datos;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -28,9 +29,17 @@ namespace Negocio
         #endregion
 
         #region Agregar Usuario
-        public int AgregarUsuario(USUARIO usuario)
+        public int AgregarUsuario()
         {
-            ModeloEntidades.AddToUSUARIO(usuario);
+            Usuario us = new Usuario();
+            USUARIO uss = new USUARIO();
+            uss.ID_SUCURSAL = us.Id_sucursal;
+            uss.PASSWORD = us.Password;
+            uss.PERFIL = us.Perfil;
+            uss.NOMBRE_USUARIO = us.Nombre_usuario;
+            uss.APELLIDO_USUARIO = us.Apellido_usuario;
+            uss.USUARIO1 = us.Usuario1;
+            ModeloEntidades.AddToUSUARIO(uss);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -40,14 +49,26 @@ namespace Negocio
         {
             int resultado = 0;
             USUARIO usuario = new USUARIO();
-            usuario.ID_USUARIO = id;
-            usuario.ID_SUCURSAL = id_sucursal;
-            usuario.PASSWORD = password;
-            usuario.PERFIL = perfil;
-            usuario.USUARIO1 = usuario1;
+            Usuario us = new Usuario();
 
+            us.Id_usuario = id;
+            us.Id_sucursal = id_sucursal;
+            us.Password = password;
+            us.Perfil = perfil;
+            us.Nombre_usuario = nombre;
+            us.Apellido_usuario = apellido;
+            us.Usuario1 = usuario1;
+
+            usuario.ID_USUARIO = us.Id_usuario;
+            usuario.ID_SUCURSAL = us.Id_sucursal;
+            usuario.PASSWORD = us.Password;
+            usuario.PERFIL = us.Perfil;
+            usuario.USUARIO1 = us.Usuario1;
             usuario.NOMBRE_USUARIO = nombre;
             usuario.APELLIDO_USUARIO = apellido;
+
+
+
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.USUARIO", usuario);
             Object ActualizaUsuario; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
             if (ModeloEntidades.TryGetObjectByKey(key, out ActualizaUsuario))
@@ -60,10 +81,23 @@ namespace Negocio
         #endregion
 
         #region Mostrar All Usuario
-        public List<USUARIO> MostrarAllUsuario()
+        public List<Usuario> MostrarAllUsuario()
         {
             var usuarios = ModeloEntidades.USUARIO;
-            return usuarios.ToList();
+            List<Usuario> lus = new List<Usuario>();
+            foreach (USUARIO us in usuarios)
+            {
+                Usuario uss = new Usuario();
+                uss.Id_usuario = us.ID_USUARIO;
+                uss.Id_sucursal = Convert.ToInt32(us.ID_SUCURSAL);
+                uss.Nombre_usuario = us.NOMBRE_USUARIO;
+                uss.Apellido_usuario = us.APELLIDO_USUARIO;
+                uss.Password = us.PASSWORD;
+                uss.Perfil = us.PERFIL;
+                uss.Usuario1 = us.USUARIO1;
+                lus.Add(uss);
+            }
+            return lus;
         }
         #endregion
 
@@ -71,6 +105,14 @@ namespace Negocio
         public USUARIO MostrarUsuarioByID(int id)
         {
             var usuarios = ModeloEntidades.USUARIO.Where(u => u.ID_USUARIO == id).FirstOrDefault();
+            return usuarios;
+        }
+        #endregion
+
+        #region Buscar Usuario by usuario and password
+        public USUARIO buscaUsuario(string password, string usuario1)
+        {
+            var usuarios = ModeloEntidades.USUARIO.Where(u => u.PASSWORD == password && u.USUARIO1 == usuario1 ).FirstOrDefault();
             return usuarios;
         }
         #endregion

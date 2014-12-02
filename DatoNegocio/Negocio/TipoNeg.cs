@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Datos;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -19,9 +20,13 @@ namespace Negocio
         #endregion
 
         #region Agregar Tipo
-        public int AgregarTipo(TIPO tipo)
+        public int AgregarTipo(string nombre_t)
         {
-            ModeloEntidades.AddToTIPO(tipo);
+            Tipo t = new Tipo();
+            TIPO tt = new TIPO();
+            t.Nombre_tipo = nombre_t;
+            tt.NOMBRE_TIPO = t.Nombre_tipo;
+            ModeloEntidades.AddToTIPO(tt);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -31,8 +36,13 @@ namespace Negocio
         {
             int resultado = 0;
             TIPO tipo = new TIPO();
-            tipo.ID_TIPO = id;
-            tipo.NOMBRE_TIPO = nombre;
+            Tipo t = new Tipo();
+
+            t.Id_tipo = id;
+            t.Nombre_tipo = nombre;
+
+            tipo.ID_TIPO = t.Id_tipo;
+            tipo.NOMBRE_TIPO = t.Nombre_tipo;
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.TIPO", tipo);
             Object ActualizaTipo; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
             if (ModeloEntidades.TryGetObjectByKey(key, out ActualizaTipo))
@@ -45,10 +55,18 @@ namespace Negocio
         #endregion
 
         #region Mostrar All Tipo
-        public List<TIPO> MostrarAllTipo()
+        public List<Tipo> MostrarAllTipo()
         {
             var tipo = ModeloEntidades.TIPO;
-            return tipo.ToList();
+            List<Tipo> lt = new List<Tipo>();
+            foreach (TIPO tt in tipo)
+            { 
+                Tipo t = new Tipo();
+                t.Id_tipo = tt.ID_TIPO;
+                t.Nombre_tipo = tt.NOMBRE_TIPO;
+                lt.Add(t);
+            }
+            return lt;
         }
         #endregion
 

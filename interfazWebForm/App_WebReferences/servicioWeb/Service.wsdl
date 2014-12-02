@@ -1,0 +1,2353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Trabajo practico taller y clase de Ingenieria de software modelo 3 capas con servidor web</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/">
+      <s:element name="AgregarUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_sucursal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="perfil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarUsuarioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_sucursal" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="perfil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarUsuarioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllUsuarios">
+        <s:complexType />
+      </s:element>
+      <s:element name="MotrarAllUsuariosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllUsuariosResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUsuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Usuario">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_usuario" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_sucursal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Perfil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellido_usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario1" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MostrarUsuarioByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarUsuarioByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarUsuarioByIDResult" type="tns:USUARIO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="USUARIO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_USUARIO" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PERFIL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_USUARIO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APELLIDO_USUARIO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="USUARIO1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SUCURSALReference" type="tns:EntityReferenceOfSUCURSAL" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityObject" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:StructuralObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EntityKey" type="tns:EntityKey" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="StructuralObject" abstract="true" />
+      <s:complexType name="EntityKey">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EntitySetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityContainerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityKeyValues" type="tns:ArrayOfEntityKeyMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEntityKeyMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EntityKeyMember" nillable="true" type="tns:EntityKeyMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntityKeyMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfSUCURSAL">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReference" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RelatedEnd">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EntityKey" type="tns:EntityKey" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RelatedEnd" abstract="true" />
+      <s:element name="BuscarUsuarioByPasswordAndUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarUsuarioByPasswordAndUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarUsuarioByPasswordAndUsuarioResult" type="tns:USUARIO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarTipo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_TIPO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarTipoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarTipoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarTipo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_TIPO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarTipoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarTipoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllTipo">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Tipo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_tipo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_tipo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTipo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tipo" nillable="true" type="tns:Tipo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllTipoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllTipoResult" type="tns:ArrayOfTipo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarTipoByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarTipoByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarTipoByIDResult" type="tns:TIPO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TIPO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_TIPO" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_PRODUCTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BARRA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarProductoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_PRODUCTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BARRA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarProductoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllProducto">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Producto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Producto_cod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_tipo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cod_bodega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_producto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cod_barra" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Producto" nillable="true" type="tns:Producto" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllProductoResult" type="tns:ArrayOfProducto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarProductoByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarProductoByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarProductoByIDResult" type="tns:PRODUCTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PRODUCTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_PRODUCTO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_BARRA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BODEGAReference" type="tns:EntityReferenceOfBODEGA" />
+              <s:element minOccurs="0" maxOccurs="1" name="TIPOReference" type="tns:EntityReferenceOfTIPO" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfBODEGA">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfTIPO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarDetalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD_DETALLE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_MINIMA" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_ACTUAL" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VALOR" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarDetalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarDetalleResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarDetalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD_DETALLE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_MINIMA" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_ACTUAL" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VALOR" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarDetalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarDetalleResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllDetalle">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Producto_cod_detalle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producto_cod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad_minima" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad_actual" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Valor" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Detalle" nillable="true" type="tns:Detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllDetalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllDetalleResult" type="tns:ArrayOfDetalle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarDetalleByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD_DETALLE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarDetalleByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarDetalleByIDResult" type="tns:DETALLE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DETALLE">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD_DETALLE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_MINIMA" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_ACTUAL" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="VALOR" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTOReference" type="tns:EntityReferenceOfPRODUCTO" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfPRODUCTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarProductoOt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarProductoOtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarProductoOtResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarProductoOTbyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_PRODUCTO_OT" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarProductoOTbyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarProductoOTbyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllProductosOt">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Productos_ot">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_producto_ot" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producto_cod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_ot" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductos_ot">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Productos_ot" nillable="true" type="tns:Productos_ot" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllProductosOtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllProductosOtResult" type="tns:ArrayOfProductos_ot" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarProductosOtByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_PRODUCTO_OT" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarProductosOtByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarProductosOtByIDResult" type="tns:PRODUCTOS_OT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PRODUCTOS_OT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_PRODUCTO_OT" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_OT" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="OTReference" type="tns:EntityReferenceOfOT" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTOReference" type="tns:EntityReferenceOfPRODUCTO" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfOT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarBodega">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_USUARIO" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarBodegaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarBodegaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarBodegabyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_USUARIO" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarBodegabyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarBodegabyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllBodega">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Bodega">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Cod_bodega" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_usuario" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBodega">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Bodega" nillable="true" type="tns:Bodega" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllBodegaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllBodegaResult" type="tns:ArrayOfBodega" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarBodegaByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarBodegaByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarBodegaByIDResult" type="tns:BODEGA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BODEGA">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_USUARIO" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CLIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TELEFONO_CLIENTE" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DIRECCION_CLIENTE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarClienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarClientebyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CLIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TELEFONO_CLIENTE" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DIRECCION_CLIENTE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarClientebyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarClientebyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllCliente">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Clientes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_cliente" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rut" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Telefono_cliente" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion_cliente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClientes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Clientes" nillable="true" type="tns:Clientes" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllClienteResult" type="tns:ArrayOfClientes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarClienteByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_cliente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarClienteByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarClienteByIDResult" type="tns:CLIENTES" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CLIENTES">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CLIENTE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RUT" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TELEFONO_CLIENTE" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MAIL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DIRECCION_CLIENTE" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarOt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NETO_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FECHA_OT" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarOtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarOtResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarOtbyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NETO_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FECHA_OT" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarOtbyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarOtbyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllOt">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Ot">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_ot" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_sucursal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_cliente" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Neto_ot" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha_ot" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Ot" nillable="true" type="tns:Ot" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllOtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllOtResult" type="tns:ArrayOfOT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarOTaByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarOTaByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarOTaByIDResult" type="tns:OT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NETO_OT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="FECHA_OT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLIENTESReference" type="tns:EntityReferenceOfCLIENTES" />
+              <s:element minOccurs="0" maxOccurs="1" name="SUCURSALReference" type="tns:EntityReferenceOfSUCURSAL" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfCLIENTES">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NUM_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NETO_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IVA_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TOTAL_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FECHA_FAC" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarFacturaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarFacturabyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_fACTURA" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NUM_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NETO_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IVA_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TOTAL_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FECHA_FAC" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarFacturabyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarFacturabyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllFacturas">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Factura">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_factura" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_cliente" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Num_fac" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Neto_fac" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Iva_fac" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total_fac" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha_fac" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFactura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Factura" nillable="true" type="tns:Factura" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllFacturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllFacturasResult" type="tns:ArrayOfFactura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarFacturaByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_FACTURA" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarFacturaByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarFacturaByIDResult" type="tns:FACTURA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FACTURA">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_FACTURA" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_CLIENTE" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NUM_FAC" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NETO_FAC" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IVA_FAC" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TOTAL_FAC" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="FECHA_FAC" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLIENTESReference" type="tns:EntityReferenceOfCLIENTES" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarDetalleFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_FACTURA" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarDetalleFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarDetalleFacturaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarDetalleFacturabyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_DETALLE_FAC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID_FACTURA" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarDetalleFacturabyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarDetalleFacturabyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllDetalleFactura">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Detalle_factura">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_detalle_fac" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_ot" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id_factura" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetalle_factura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Detalle_factura" nillable="true" type="tns:Detalle_factura" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllDetalleFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllDetalleFacturaResult" type="tns:ArrayOfDetalle_factura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarDetalleFacturaByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_DETALLE_FAC" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarDetalleFacturaByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarDetalleFacturaByIDResult" type="tns:DETALLE_FACTURA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DETALLE_FACTURA">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_DETALLE_FAC" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_OT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ID_FACTURA" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="FACTURAReference" type="tns:EntityReferenceOfFACTURA" />
+              <s:element minOccurs="0" maxOccurs="1" name="OTReference" type="tns:EntityReferenceOfOT" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReferenceOfFACTURA">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AgregarSucursal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DIRECCION_SUCURSAL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TELEFONO_SUCURSAL" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarSucursalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarSucursalResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarSucursalbyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DIRECCION_SUCURSAL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TELEFONO_SUCURSAL" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarSucursalbyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarSucursalbyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MotrarAllSucursal">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Sucursal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id_sucursal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion_sucursal" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Telefono_sucursal" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSucursal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Sucursal" nillable="true" type="tns:Sucursal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MotrarAllSucursalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MotrarAllSucursalResult" type="tns:ArrayOfSucursal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarSucursalByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarSucursalByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarSucursalByIDResult" type="tns:SUCURSAL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SUCURSAL">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_SUCURSAL" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DIRECCION_SUCURSAL" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TELEFONO_SUCURSAL" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AgregarUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="AgregarUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ModificarUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllUsuariosSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllUsuariosSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarUsuarioByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarUsuarioByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarUsuarioByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarUsuarioByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuarioByPasswordAndUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarUsuarioByPasswordAndUsuario" />
+  </wsdl:message>
+  <wsdl:message name="BuscarUsuarioByPasswordAndUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarUsuarioByPasswordAndUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarTipoSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarTipo" />
+  </wsdl:message>
+  <wsdl:message name="AgregarTipoSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarTipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarTipoSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarTipo" />
+  </wsdl:message>
+  <wsdl:message name="ModificarTipoSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarTipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllTipoSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllTipo" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllTipoSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllTipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarTipoByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarTipoByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarTipoByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarTipoByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarProducto" />
+  </wsdl:message>
+  <wsdl:message name="AgregarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarProducto" />
+  </wsdl:message>
+  <wsdl:message name="ModificarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllProducto" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductoByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarProductoByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductoByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarProductoByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarDetalleSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarDetalle" />
+  </wsdl:message>
+  <wsdl:message name="AgregarDetalleSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarDetalleSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarDetalle" />
+  </wsdl:message>
+  <wsdl:message name="ModificarDetalleSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllDetalleSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllDetalle" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllDetalleSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarDetalleByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarDetalleByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarDetalleByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarDetalleByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarProductoOtSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarProductoOt" />
+  </wsdl:message>
+  <wsdl:message name="AgregarProductoOtSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarProductoOtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarProductoOTbyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarProductoOTbyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarProductoOTbyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarProductoOTbyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllProductosOtSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllProductosOt" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllProductosOtSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllProductosOtResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductosOtByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarProductosOtByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductosOtByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarProductosOtByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarBodegaSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarBodega" />
+  </wsdl:message>
+  <wsdl:message name="AgregarBodegaSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarBodegaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarBodegabyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarBodegabyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarBodegabyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarBodegabyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllBodegaSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllBodega" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllBodegaSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllBodegaResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarBodegaByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarBodegaByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarBodegaByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarBodegaByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarCliente" />
+  </wsdl:message>
+  <wsdl:message name="AgregarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarClientebyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarClientebyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarClientebyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarClientebyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllCliente" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarClienteByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarClienteByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarClienteByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarClienteByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarOtSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarOt" />
+  </wsdl:message>
+  <wsdl:message name="AgregarOtSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarOtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarOtbyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarOtbyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarOtbyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarOtbyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllOtSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllOt" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllOtSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllOtResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarOTaByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarOTaByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarOTaByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarOTaByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarFactura" />
+  </wsdl:message>
+  <wsdl:message name="AgregarFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarFacturabyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarFacturabyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarFacturabyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarFacturabyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllFacturasSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllFacturas" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllFacturasSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllFacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarFacturaByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarFacturaByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarFacturaByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarFacturaByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarDetalleFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarDetalleFactura" />
+  </wsdl:message>
+  <wsdl:message name="AgregarDetalleFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarDetalleFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarDetalleFacturabyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarDetalleFacturabyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarDetalleFacturabyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarDetalleFacturabyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllDetalleFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllDetalleFactura" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllDetalleFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllDetalleFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarDetalleFacturaByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarDetalleFacturaByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarDetalleFacturaByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarDetalleFacturaByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarSucursalSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarSucursal" />
+  </wsdl:message>
+  <wsdl:message name="AgregarSucursalSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarSucursalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarSucursalbyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarSucursalbyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarSucursalbyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarSucursalbyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllSucursalSoapIn">
+    <wsdl:part name="parameters" element="tns:MotrarAllSucursal" />
+  </wsdl:message>
+  <wsdl:message name="MotrarAllSucursalSoapOut">
+    <wsdl:part name="parameters" element="tns:MotrarAllSucursalResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarSucursalByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarSucursalByID" />
+  </wsdl:message>
+  <wsdl:message name="MostrarSucursalByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarSucursalByIDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WCFTransSoap">
+    <wsdl:operation name="AgregarUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar Usuario</wsdl:documentation>
+      <wsdl:input message="tns:AgregarUsuarioSoapIn" />
+      <wsdl:output message="tns:AgregarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica Usuario por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarUsuarioSoapIn" />
+      <wsdl:output message="tns:ModificarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllUsuarios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los usuarios ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllUsuariosSoapIn" />
+      <wsdl:output message="tns:MotrarAllUsuariosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarUsuarioByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra usuario, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarUsuarioByIDSoapIn" />
+      <wsdl:output message="tns:MostrarUsuarioByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuarioByPasswordAndUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">buscar usuario por password y usuario</wsdl:documentation>
+      <wsdl:input message="tns:BuscarUsuarioByPasswordAndUsuarioSoapIn" />
+      <wsdl:output message="tns:BuscarUsuarioByPasswordAndUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarTipo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar Tipo</wsdl:documentation>
+      <wsdl:input message="tns:AgregarTipoSoapIn" />
+      <wsdl:output message="tns:AgregarTipoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTipo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica Tipo por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarTipoSoapIn" />
+      <wsdl:output message="tns:ModificarTipoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllTipo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los tipos ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllTipoSoapIn" />
+      <wsdl:output message="tns:MotrarAllTipoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarTipoByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra tipo, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarTipoByIDSoapIn" />
+      <wsdl:output message="tns:MostrarTipoByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar Producto</wsdl:documentation>
+      <wsdl:input message="tns:AgregarProductoSoapIn" />
+      <wsdl:output message="tns:AgregarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica Producto por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarProductoSoapIn" />
+      <wsdl:output message="tns:ModificarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los productos ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllProductoSoapIn" />
+      <wsdl:output message="tns:MotrarAllProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductoByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra producto, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarProductoByIDSoapIn" />
+      <wsdl:output message="tns:MostrarProductoByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar Detalle</wsdl:documentation>
+      <wsdl:input message="tns:AgregarDetalleSoapIn" />
+      <wsdl:output message="tns:AgregarDetalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDetalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica detalle por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarDetalleSoapIn" />
+      <wsdl:output message="tns:ModificarDetalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllDetalle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los detalles ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllDetalleSoapIn" />
+      <wsdl:output message="tns:MotrarAllDetalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra detalle, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarDetalleByIDSoapIn" />
+      <wsdl:output message="tns:MostrarDetalleByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarProductoOt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar producto ot</wsdl:documentation>
+      <wsdl:input message="tns:AgregarProductoOtSoapIn" />
+      <wsdl:output message="tns:AgregarProductoOtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarProductoOTbyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica producto ot por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarProductoOTbyIDSoapIn" />
+      <wsdl:output message="tns:ModificarProductoOTbyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllProductosOt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los productos ot ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllProductosOtSoapIn" />
+      <wsdl:output message="tns:MotrarAllProductosOtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra productos ot, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarProductosOtByIDSoapIn" />
+      <wsdl:output message="tns:MostrarProductosOtByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarBodega">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar BODEGA</wsdl:documentation>
+      <wsdl:input message="tns:AgregarBodegaSoapIn" />
+      <wsdl:output message="tns:AgregarBodegaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarBodegabyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica bodega por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarBodegabyIDSoapIn" />
+      <wsdl:output message="tns:ModificarBodegabyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllBodega">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos las bodegas ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllBodegaSoapIn" />
+      <wsdl:output message="tns:MotrarAllBodegaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarBodegaByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra bodega, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarBodegaByIDSoapIn" />
+      <wsdl:output message="tns:MostrarBodegaByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar cliente</wsdl:documentation>
+      <wsdl:input message="tns:AgregarClienteSoapIn" />
+      <wsdl:output message="tns:AgregarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarClientebyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica cliente por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarClientebyIDSoapIn" />
+      <wsdl:output message="tns:ModificarClientebyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los clientes ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllClienteSoapIn" />
+      <wsdl:output message="tns:MotrarAllClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarClienteByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra Cliente, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarClienteByIDSoapIn" />
+      <wsdl:output message="tns:MostrarClienteByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarOt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar ot</wsdl:documentation>
+      <wsdl:input message="tns:AgregarOtSoapIn" />
+      <wsdl:output message="tns:AgregarOtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOtbyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica cliente por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarOtbyIDSoapIn" />
+      <wsdl:output message="tns:ModificarOtbyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllOt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todas las ot ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllOtSoapIn" />
+      <wsdl:output message="tns:MotrarAllOtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarOTaByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra ot, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarOTaByIDSoapIn" />
+      <wsdl:output message="tns:MostrarOTaByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarFactura">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar factura</wsdl:documentation>
+      <wsdl:input message="tns:AgregarFacturaSoapIn" />
+      <wsdl:output message="tns:AgregarFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarFacturabyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica factura por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarFacturabyIDSoapIn" />
+      <wsdl:output message="tns:ModificarFacturabyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllFacturas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todas las facturas ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllFacturasSoapIn" />
+      <wsdl:output message="tns:MotrarAllFacturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarFacturaByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra factura, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarFacturaByIDSoapIn" />
+      <wsdl:output message="tns:MostrarFacturaByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalleFactura">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar detalle factura</wsdl:documentation>
+      <wsdl:input message="tns:AgregarDetalleFacturaSoapIn" />
+      <wsdl:output message="tns:AgregarDetalleFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDetalleFacturabyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica detalle factura por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarDetalleFacturabyIDSoapIn" />
+      <wsdl:output message="tns:ModificarDetalleFacturabyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllDetalleFactura">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todas los detalle factura ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllDetalleFacturaSoapIn" />
+      <wsdl:output message="tns:MotrarAllDetalleFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleFacturaByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra detalle factura, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarDetalleFacturaByIDSoapIn" />
+      <wsdl:output message="tns:MostrarDetalleFacturaByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarSucursal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar sucursal</wsdl:documentation>
+      <wsdl:input message="tns:AgregarSucursalSoapIn" />
+      <wsdl:output message="tns:AgregarSucursalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarSucursalbyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica sucursal por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarSucursalbyIDSoapIn" />
+      <wsdl:output message="tns:ModificarSucursalbyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllSucursal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todas los sucursal ingresados</wsdl:documentation>
+      <wsdl:input message="tns:MotrarAllSucursalSoapIn" />
+      <wsdl:output message="tns:MotrarAllSucursalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarSucursalByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra sucursal, recibe parametro ID</wsdl:documentation>
+      <wsdl:input message="tns:MostrarSucursalByIDSoapIn" />
+      <wsdl:output message="tns:MostrarSucursalByIDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WCFTransSoap" type="tns:WCFTransSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgregarUsuario">
+      <soap:operation soapAction="http://localhost/AgregarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUsuario">
+      <soap:operation soapAction="http://localhost/ModificarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllUsuarios">
+      <soap:operation soapAction="http://localhost/MotrarAllUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarUsuarioByID">
+      <soap:operation soapAction="http://localhost/MostrarUsuarioByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuarioByPasswordAndUsuario">
+      <soap:operation soapAction="http://localhost/BuscarUsuarioByPasswordAndUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarTipo">
+      <soap:operation soapAction="http://localhost/AgregarTipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTipo">
+      <soap:operation soapAction="http://localhost/ModificarTipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllTipo">
+      <soap:operation soapAction="http://localhost/MotrarAllTipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarTipoByID">
+      <soap:operation soapAction="http://localhost/MostrarTipoByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarProducto">
+      <soap:operation soapAction="http://localhost/AgregarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarProducto">
+      <soap:operation soapAction="http://localhost/ModificarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllProducto">
+      <soap:operation soapAction="http://localhost/MotrarAllProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductoByID">
+      <soap:operation soapAction="http://localhost/MostrarProductoByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalle">
+      <soap:operation soapAction="http://localhost/AgregarDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDetalle">
+      <soap:operation soapAction="http://localhost/ModificarDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllDetalle">
+      <soap:operation soapAction="http://localhost/MotrarAllDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleByID">
+      <soap:operation soapAction="http://localhost/MostrarDetalleByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarProductoOt">
+      <soap:operation soapAction="http://localhost/AgregarProductoOt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarProductoOTbyID">
+      <soap:operation soapAction="http://localhost/ModificarProductoOTbyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllProductosOt">
+      <soap:operation soapAction="http://localhost/MotrarAllProductosOt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByID">
+      <soap:operation soapAction="http://localhost/MostrarProductosOtByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarBodega">
+      <soap:operation soapAction="http://localhost/AgregarBodega" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarBodegabyID">
+      <soap:operation soapAction="http://localhost/ModificarBodegabyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllBodega">
+      <soap:operation soapAction="http://localhost/MotrarAllBodega" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarBodegaByID">
+      <soap:operation soapAction="http://localhost/MostrarBodegaByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarCliente">
+      <soap:operation soapAction="http://localhost/AgregarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarClientebyID">
+      <soap:operation soapAction="http://localhost/ModificarClientebyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllCliente">
+      <soap:operation soapAction="http://localhost/MotrarAllCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarClienteByID">
+      <soap:operation soapAction="http://localhost/MostrarClienteByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarOt">
+      <soap:operation soapAction="http://localhost/AgregarOt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOtbyID">
+      <soap:operation soapAction="http://localhost/ModificarOtbyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllOt">
+      <soap:operation soapAction="http://localhost/MotrarAllOt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarOTaByID">
+      <soap:operation soapAction="http://localhost/MostrarOTaByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarFactura">
+      <soap:operation soapAction="http://localhost/AgregarFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarFacturabyID">
+      <soap:operation soapAction="http://localhost/ModificarFacturabyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllFacturas">
+      <soap:operation soapAction="http://localhost/MotrarAllFacturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarFacturaByID">
+      <soap:operation soapAction="http://localhost/MostrarFacturaByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalleFactura">
+      <soap:operation soapAction="http://localhost/AgregarDetalleFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDetalleFacturabyID">
+      <soap:operation soapAction="http://localhost/ModificarDetalleFacturabyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllDetalleFactura">
+      <soap:operation soapAction="http://localhost/MotrarAllDetalleFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleFacturaByID">
+      <soap:operation soapAction="http://localhost/MostrarDetalleFacturaByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarSucursal">
+      <soap:operation soapAction="http://localhost/AgregarSucursal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarSucursalbyID">
+      <soap:operation soapAction="http://localhost/ModificarSucursalbyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllSucursal">
+      <soap:operation soapAction="http://localhost/MotrarAllSucursal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarSucursalByID">
+      <soap:operation soapAction="http://localhost/MostrarSucursalByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WCFTransSoap12" type="tns:WCFTransSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgregarUsuario">
+      <soap12:operation soapAction="http://localhost/AgregarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUsuario">
+      <soap12:operation soapAction="http://localhost/ModificarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllUsuarios">
+      <soap12:operation soapAction="http://localhost/MotrarAllUsuarios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarUsuarioByID">
+      <soap12:operation soapAction="http://localhost/MostrarUsuarioByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuarioByPasswordAndUsuario">
+      <soap12:operation soapAction="http://localhost/BuscarUsuarioByPasswordAndUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarTipo">
+      <soap12:operation soapAction="http://localhost/AgregarTipo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTipo">
+      <soap12:operation soapAction="http://localhost/ModificarTipo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllTipo">
+      <soap12:operation soapAction="http://localhost/MotrarAllTipo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarTipoByID">
+      <soap12:operation soapAction="http://localhost/MostrarTipoByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarProducto">
+      <soap12:operation soapAction="http://localhost/AgregarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarProducto">
+      <soap12:operation soapAction="http://localhost/ModificarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllProducto">
+      <soap12:operation soapAction="http://localhost/MotrarAllProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductoByID">
+      <soap12:operation soapAction="http://localhost/MostrarProductoByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalle">
+      <soap12:operation soapAction="http://localhost/AgregarDetalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDetalle">
+      <soap12:operation soapAction="http://localhost/ModificarDetalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllDetalle">
+      <soap12:operation soapAction="http://localhost/MotrarAllDetalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleByID">
+      <soap12:operation soapAction="http://localhost/MostrarDetalleByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarProductoOt">
+      <soap12:operation soapAction="http://localhost/AgregarProductoOt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarProductoOTbyID">
+      <soap12:operation soapAction="http://localhost/ModificarProductoOTbyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllProductosOt">
+      <soap12:operation soapAction="http://localhost/MotrarAllProductosOt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByID">
+      <soap12:operation soapAction="http://localhost/MostrarProductosOtByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarBodega">
+      <soap12:operation soapAction="http://localhost/AgregarBodega" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarBodegabyID">
+      <soap12:operation soapAction="http://localhost/ModificarBodegabyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllBodega">
+      <soap12:operation soapAction="http://localhost/MotrarAllBodega" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarBodegaByID">
+      <soap12:operation soapAction="http://localhost/MostrarBodegaByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarCliente">
+      <soap12:operation soapAction="http://localhost/AgregarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarClientebyID">
+      <soap12:operation soapAction="http://localhost/ModificarClientebyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllCliente">
+      <soap12:operation soapAction="http://localhost/MotrarAllCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarClienteByID">
+      <soap12:operation soapAction="http://localhost/MostrarClienteByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarOt">
+      <soap12:operation soapAction="http://localhost/AgregarOt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOtbyID">
+      <soap12:operation soapAction="http://localhost/ModificarOtbyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllOt">
+      <soap12:operation soapAction="http://localhost/MotrarAllOt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarOTaByID">
+      <soap12:operation soapAction="http://localhost/MostrarOTaByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarFactura">
+      <soap12:operation soapAction="http://localhost/AgregarFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarFacturabyID">
+      <soap12:operation soapAction="http://localhost/ModificarFacturabyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllFacturas">
+      <soap12:operation soapAction="http://localhost/MotrarAllFacturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarFacturaByID">
+      <soap12:operation soapAction="http://localhost/MostrarFacturaByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalleFactura">
+      <soap12:operation soapAction="http://localhost/AgregarDetalleFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarDetalleFacturabyID">
+      <soap12:operation soapAction="http://localhost/ModificarDetalleFacturabyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllDetalleFactura">
+      <soap12:operation soapAction="http://localhost/MotrarAllDetalleFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleFacturaByID">
+      <soap12:operation soapAction="http://localhost/MostrarDetalleFacturaByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarSucursal">
+      <soap12:operation soapAction="http://localhost/AgregarSucursal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarSucursalbyID">
+      <soap12:operation soapAction="http://localhost/ModificarSucursalbyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotrarAllSucursal">
+      <soap12:operation soapAction="http://localhost/MotrarAllSucursal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarSucursalByID">
+      <soap12:operation soapAction="http://localhost/MostrarSucursalByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WCFTrans">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Trabajo practico taller y clase de Ingenieria de software modelo 3 capas con servidor web</wsdl:documentation>
+    <wsdl:port name="WCFTransSoap" binding="tns:WCFTransSoap">
+      <soap:address location="http://localhost:62012/ServicioWebWCF/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WCFTransSoap12" binding="tns:WCFTransSoap12">
+      <soap12:address location="http://localhost:62012/ServicioWebWCF/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

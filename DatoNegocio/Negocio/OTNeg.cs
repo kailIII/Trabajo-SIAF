@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Datos;
+using BusinessEntities;
 
 namespace Negocio
 {
@@ -20,9 +21,17 @@ namespace Negocio
         #endregion
 
         #region Agregar OT
-        public int AgregarOT(PRODUCTOS_OT producto_ot)
+        public int AgregarOT()
         {
-            ModeloEntidades.AddToPRODUCTOS_OT(producto_ot);
+            Ot o = new Ot();
+            OT oo = new OT();
+            oo.ID_SUCURSAL = o.Id_sucursal;
+            oo.ID_CLIENTE = o.Id_cliente;
+            oo.NETO_OT = o.Neto_ot;
+            oo.FECHA_OT = o.Fecha_ot;
+            oo.ESTADO = o.Estado;
+
+            ModeloEntidades.AddToOT(oo);
             return ModeloEntidades.SaveChanges();
         }
         #endregion
@@ -31,12 +40,21 @@ namespace Negocio
         public int ModificarOTByID(int ID_OT, int ID_SUCURSAL, int ID_CLIENTE,int NETO_OT, DateTime FECHA_OT, string ESTADO)
         {
             int resultado = 0;
+            Ot o = new Ot();
             OT ot = new OT();
-            ot.ID_OT = ID_OT;
-            ot.ID_SUCURSAL = ID_SUCURSAL;
-            ot.ID_CLIENTE = ID_CLIENTE;
-            ot.NETO_OT = NETO_OT;
-            ot.FECHA_OT = FECHA_OT;
+            o.Id_ot = ID_OT;
+            o.Id_sucursal = ID_SUCURSAL;
+            o.Id_cliente = ID_CLIENTE;
+            o.Neto_ot = NETO_OT;
+            o.Fecha_ot = FECHA_OT;
+            o.Estado = ESTADO;
+
+            ot.ID_OT = o.Id_ot;
+            ot.ID_SUCURSAL = o.Id_sucursal;
+            ot.ID_CLIENTE = o.Id_cliente;
+            ot.NETO_OT = o.Neto_ot;
+            ot.FECHA_OT = o.Fecha_ot;
+            ot.ESTADO = o.Estado;
 
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.OT", ot);
             Object ActualizaOT; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
@@ -50,10 +68,22 @@ namespace Negocio
         #endregion
 
         #region Mostrar All OT
-        public List<OT> MostrarAllOT()
+        public List<Ot> MostrarAllOT()
         {
+            List<Ot> lot = new List<Ot>();
             var ot = ModeloEntidades.OT;
-            return ot.ToList();
+            foreach (OT o in ot)
+            {
+                Ot oo = new Ot();
+                oo.Id_ot = o.ID_OT;
+                oo.Id_sucursal = o.ID_SUCURSAL;
+                oo.Id_cliente = o.ID_CLIENTE;
+                oo.Neto_ot = Convert.ToInt32(o.NETO_OT);
+                oo.Fecha_ot = Convert.ToDateTime(o.FECHA_OT);
+                oo.Estado = o.ESTADO;
+                lot.Add(oo);
+            }
+            return lot;
         }
         #endregion
 

@@ -20,14 +20,21 @@ namespace Negocio
         #endregion
 
         #region Agregar Producto
-        public int AgregarProducto()
+        public int AgregarProducto(string PRODUCTO_COD, int ID_TIPO, string COD_BODEGA, string NOMBRE_PRODUCTO, string COD_BARRA)
         {
             Producto p = new Producto();
             PRODUCTO pp = new PRODUCTO();
+            p.Producto_cod = PRODUCTO_COD;
+            p.Id_tipo = ID_TIPO;
+            p.Cod_bodega = COD_BODEGA;
+            p.Nombre_producto = NOMBRE_PRODUCTO;
+            p.Cod_barra = COD_BARRA;
+
+            pp.PRODUCTO_COD = p.Producto_cod;
             pp.ID_TIPO = p.Id_tipo;
             pp.COD_BODEGA = p.Cod_bodega;
             pp.NOMBRE_PRODUCTO = p.Nombre_producto;
-            pp.COD_BARRA = pp.COD_BARRA;
+            pp.COD_BARRA = p.Cod_barra;
 
             ModeloEntidades.AddToPRODUCTO(pp);
             return ModeloEntidades.SaveChanges();

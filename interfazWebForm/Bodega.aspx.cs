@@ -14,7 +14,7 @@ public partial class Bodega : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        focus();
     }
     protected void btnAgregar_Click(object sender, EventArgs e)
     {

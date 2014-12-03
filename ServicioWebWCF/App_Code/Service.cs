@@ -25,27 +25,19 @@ public class Service : System.Web.Services.WebService
 
     #region Agregar Usuario
     [WebMethod(Description = "Agregar Usuario")]
-    public int AgregarUsuario(int id_sucursal, string password, string perfil, string nombre, string apellido, string usuario1)
+    public int AgregarUsuario(int ID_SUCURSAL, string PASSWORD, string PERFIL, string NOMBRE_USUARIO, string APELLIDO_USUARIO, string USUARIO1)
     {
-        Usuario usuario = new Usuario();
-        usuario.Id_sucursal = id_sucursal;
-        usuario.Password = password;
-        usuario.Perfil = perfil;
-        usuario.Nombre_usuario = nombre;
-        usuario.Apellido_usuario = apellido;
-        usuario.Usuario1 = usuario1;
-
         UsuarioNeg cargaUsuario = new UsuarioNeg();
-        return cargaUsuario.AgregarUsuario();
+        return cargaUsuario.AgregarUsuario(ID_SUCURSAL,PASSWORD,PERFIL,NOMBRE_USUARIO,APELLIDO_USUARIO,USUARIO1);
     }
     #endregion //fin agregar usuario
 
     #region Modificar Usuario por ID
     [WebMethod(Description = "Modifica Usuario por ID, con parametros de entrada")]
-    public int ModificarUsuario(int id,int id_sucursal, string password, string perfil, string nombre, string apellido, string usuario1)
+    public int ModificarUsuario(int ID_USUARIO,int ID_SUCURSAL, string PASSWORD, string PERFIL, string NOMBRE_USUARIO, string APELLIDO_USUARIO, string USUARIO1)
     {
         UsuarioNeg modificaUsuario = new UsuarioNeg();
-        return modificaUsuario.ModificarUsuarioByID(id, id_sucursal, password, perfil, nombre, apellido, usuario1);
+        return modificaUsuario.ModificarUsuarioByID(ID_USUARIO, ID_SUCURSAL, PASSWORD, PERFIL, NOMBRE_USUARIO, APELLIDO_USUARIO, USUARIO1);
     }
     #endregion //fin modificar usuario
 
@@ -124,15 +116,10 @@ public class Service : System.Web.Services.WebService
 
     #region Agregar Producto
     [WebMethod(Description = "Agregar Producto")]
-    public int AgregarProducto(int ID_TIPO, string COD_BODEGA, string NOMBRE_PRODUCTO, string COD_BARRA)
+    public int AgregarProducto(string PRODUCTO_COD, int ID_TIPO, string COD_BODEGA, string NOMBRE_PRODUCTO, string COD_BARRA)
     {
-        Producto pro = new Producto();
-        pro.Id_tipo = ID_TIPO;
-        pro.Cod_bodega = COD_BODEGA;
-        pro.Nombre_producto = NOMBRE_PRODUCTO;
-        pro.Cod_barra = COD_BARRA;
         ProductoNeg pneg = new ProductoNeg();
-        return pneg.AgregarProducto();
+        return pneg.AgregarProducto(PRODUCTO_COD,ID_TIPO,COD_BODEGA,NOMBRE_PRODUCTO,COD_BARRA);
     }
     #endregion //fin agregar producto
 
@@ -265,12 +252,8 @@ public class Service : System.Web.Services.WebService
     [WebMethod(Description = "Agregar BODEGA")]
     public int AgregarBodega(string COD_BODEGA, int ID_USUARIO)
     {
-        Bodega bodega = new Bodega();
-        bodega.Cod_bodega = COD_BODEGA;
-        bodega.Id_usuario = ID_USUARIO;
         BodegaNeg bneg = new BodegaNeg();
-
-        return bneg.AgregarBodega();
+        return bneg.AgregarBodega(COD_BODEGA, ID_USUARIO);
     }
     #endregion //fin agregar bodega
 
@@ -310,16 +293,9 @@ public class Service : System.Web.Services.WebService
     [WebMethod(Description = "Agregar cliente")]
     public int AgregarCliente(string NOMBRE_CLIENTE, string RUT, int TELEFONO_CLIENTE, string MAIL, string DIRECCION_CLIENTE)
     {
-        Clientes cli = new Clientes();
-        cli.Nombre_cliente = NOMBRE_CLIENTE;
-        cli.Rut = RUT;
-        cli.Telefono_cliente = TELEFONO_CLIENTE;
-        cli.Mail = MAIL;
-        cli.Direccion_cliente = DIRECCION_CLIENTE;
-
         ClienteNeg cneg = new ClienteNeg();
 
-        return cneg.AgregarCliente();
+        return cneg.AgregarCliente(NOMBRE_CLIENTE,RUT,TELEFONO_CLIENTE,MAIL,DIRECCION_CLIENTE);
     }
     #endregion //fin agregar cliente
 

@@ -31,7 +31,7 @@ public partial class _Default : System.Web.UI.Page
         
         if (data == null)
         {
-            lblMensaje.Text = "Usuario no encontrado";
+            lblMensaje.Text = "Usuario no encontrado !! verifique nombre de usuario y contraseña";
             limpiar();
         }
         else

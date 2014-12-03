@@ -21,10 +21,16 @@ namespace Negocio
         #endregion
 
         #region Agregar Cliente
-        public int AgregarCliente()
+        public int AgregarCliente(string NOMBRE_CLIENTE, string RUT, int TELEFONO_CLIENTE, string MAIL, string DIRECCION_CLIENTE)
         {
             Clientes c = new Clientes();
             CLIENTES cc = new CLIENTES();
+            c.Nombre_cliente = NOMBRE_CLIENTE;
+            c.Rut = RUT;
+            c.Telefono_cliente = TELEFONO_CLIENTE;
+            c.Mail = MAIL;
+            c.Direccion_cliente = DIRECCION_CLIENTE;
+
             cc.NOMBRE_CLIENTE = c.Nombre_cliente;
             cc.DIRECCION_CLIENTE = c.Direccion_cliente;
             cc.RUT = c.Rut;
@@ -73,6 +79,7 @@ namespace Negocio
             foreach (CLIENTES cc in clientes)
             {
                 Clientes cli = new Clientes();
+                cli.Id_cliente = cc.ID_CLIENTE;
                 cli.Nombre_cliente = cc.NOMBRE_CLIENTE;
                 cli.Direccion_cliente = cc.DIRECCION_CLIENTE;
                 cli.Rut = cc.RUT;

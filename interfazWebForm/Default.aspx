@@ -8,7 +8,15 @@
     <style type="text/css">
         .style1
         {
-            width: 100%;
+            width: 198px;
+        }
+        .style2
+        {
+            width: 60px;
+        }
+        .style3
+        {
+            width: 128px;
         }
     </style>
 </head>
@@ -16,34 +24,43 @@
     <form id="form1" runat="server">
     <div>
     
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    
         <table align="center" class="style1">
             <tr>
-                <td>
+                <td class="style2">
                     Usuario</td>
-                <td>
+                <td class="style3">
                     <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="style2">
                     Password</td>
-                <td>
+                <td class="style3">
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="style2">
                     &nbsp;</td>
-                <td>
+                <td class="style3">
                     <asp:Button ID="btnIngresar" runat="server" onclick="btnIngresar_Click" 
                         Text="Ingresar" />
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="style2">
                     &nbsp;</td>
-                <td>
-                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                <td class="style3">
+                    <asp:Label ID="lblMensaje" runat="server" style="color: #FF0000"></asp:Label>
                 </td>
             </tr>
         </table>

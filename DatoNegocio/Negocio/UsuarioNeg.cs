@@ -29,10 +29,17 @@ namespace Negocio
         #endregion
 
         #region Agregar Usuario
-        public int AgregarUsuario()
+        public int AgregarUsuario(int ID_SUCURSAL, string PASSWORD, string PERFIL, string NOMBRE_USUARIO, string APELLIDO_USUARIO, string USUARIO1)
         {
             Usuario us = new Usuario();
             USUARIO uss = new USUARIO();
+            us.Id_sucursal = ID_SUCURSAL;
+            us.Password = PASSWORD;
+            us.Perfil = PERFIL;
+            us.Nombre_usuario = NOMBRE_USUARIO;
+            us.Apellido_usuario = APELLIDO_USUARIO;
+            us.Usuario1 = USUARIO1;
+
             uss.ID_SUCURSAL = us.Id_sucursal;
             uss.PASSWORD = us.Password;
             uss.PERFIL = us.Perfil;
@@ -45,27 +52,27 @@ namespace Negocio
         #endregion
 
         #region Modificar Usuario By ID
-        public int ModificarUsuarioByID(int id,int id_sucursal, String password, String perfil, String nombre, String apellido, string usuario1)
+        public int ModificarUsuarioByID(int ID_USUARIO,int ID_SUCURSAL, String PASSWORD, String PERFIL, String NOMBRE_USUARIO, String APELLIDO_USUARIO, string USUARIO1)
         {
             int resultado = 0;
             USUARIO usuario = new USUARIO();
             Usuario us = new Usuario();
 
-            us.Id_usuario = id;
-            us.Id_sucursal = id_sucursal;
-            us.Password = password;
-            us.Perfil = perfil;
-            us.Nombre_usuario = nombre;
-            us.Apellido_usuario = apellido;
-            us.Usuario1 = usuario1;
+            us.Id_usuario = ID_USUARIO;
+            us.Id_sucursal = ID_SUCURSAL;
+            us.Password = PASSWORD;
+            us.Perfil = PERFIL;
+            us.Nombre_usuario = NOMBRE_USUARIO;
+            us.Apellido_usuario = APELLIDO_USUARIO;
+            us.Usuario1 = USUARIO1;
 
             usuario.ID_USUARIO = us.Id_usuario;
             usuario.ID_SUCURSAL = us.Id_sucursal;
             usuario.PASSWORD = us.Password;
             usuario.PERFIL = us.Perfil;
             usuario.USUARIO1 = us.Usuario1;
-            usuario.NOMBRE_USUARIO = nombre;
-            usuario.APELLIDO_USUARIO = apellido;
+            usuario.NOMBRE_USUARIO = us.Nombre_usuario;
+            usuario.APELLIDO_USUARIO = us.Apellido_usuario;
 
 
 

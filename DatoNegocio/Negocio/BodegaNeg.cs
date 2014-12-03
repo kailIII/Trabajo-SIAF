@@ -20,10 +20,12 @@ namespace Negocio
         #endregion
 
         #region Agregar Bodega
-        public int AgregarBodega()
+        public int AgregarBodega(string COD_BODEGA, int ID_USUARIO)
         {
             Bodega b = new Bodega();
             BODEGA bb = new BODEGA();
+            b.Cod_bodega = COD_BODEGA;
+            b.Id_usuario = ID_USUARIO;
             bb.COD_BODEGA = b.Cod_bodega;
             bb.ID_USUARIO = b.Id_usuario;
             ModeloEntidades.AddToBODEGA(bb);

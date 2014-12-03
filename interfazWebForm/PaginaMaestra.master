@@ -16,6 +16,18 @@
         {
             width: 707px;
         }
+        .style3
+        {
+            width: 60px;
+        }
+        .style4
+        {
+            color: #66667E;
+        }
+        .style5
+        {
+            color: #6666AB;
+        }
     </style>
 </head>
 <body>
@@ -23,21 +35,34 @@
     <div>
         <table class="style1">
             <tr>
+                <td class="style3">
+                    &nbsp;</td>
                 <td class="style2">
-                    SIAF</td>
+                    <h1 class="style4">
+                    SIAF</h1>
+                </td>
                 <td>
-                    <asp:Label ID="lblNombreUsuario" runat="server"></asp:Label>
+                    <span class="style5">Usuario:
+                    </span>
+                    <asp:Label ID="lblNombreUsuario" runat="server" CssClass="style5"></asp:Label>
                 </td>
                 <td>
                     <asp:Button ID="btnSalir" runat="server" onclick="btnSalir_Click" 
                         style="text-align: right" Text="Salir" />
                 </td>
+                <td>
+                    &nbsp;</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <asp:Menu ID="Menu1" runat="server" BackColor="#E3EAEB" 
+                <td class="style3" style="border-bottom-style: solid">
+                    &nbsp;</td>
+                <td style="border-bottom-style: solid">
+                    &nbsp;</td>
+                <td style="border-bottom-style: solid">
+                    <asp:Menu ID="Menu1" runat="server" BackColor="#E3EAEB"
                         DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" 
-                        ForeColor="#666666" Orientation="Horizontal" StaticSubMenuIndent="10px">
+                        ForeColor="#666666" Orientation="Horizontal" StaticSubMenuIndent="10px" 
+                        style="text-align: left">
                         <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
                         <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
                         <DynamicMenuStyle BackColor="#E3EAEB" />
@@ -45,12 +70,14 @@
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Principal.aspx" Text="Home" Value="Home">
                             </asp:MenuItem>
-                            <asp:MenuItem Text="Mantenedores" Value="Mantenedores">
-                                <asp:MenuItem NavigateUrl="~/Tipo.aspx" Text="Tipo" Value="Tipo"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Producto.aspx" Text="Producto" Value="Producto">
-                                </asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Bodega.aspx" Text="Bodega" Value="Bodega">
-                                </asp:MenuItem>
+                            <asp:MenuItem Text="Cliente" Value="Cliente" NavigateUrl="~/Cliente.aspx">
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Bodega.aspx" Text="Bodega" Value="Bodega">
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Producto.aspx" Text="Producto" Value="Producto">
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Tipo.aspx" Text="Tipo" Value="Tipo"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Usuario.aspx" Text="Usuario" Value="Usuario">
                             </asp:MenuItem>
                         </Items>
                         <StaticHoverStyle BackColor="#666666" ForeColor="White" />
@@ -58,10 +85,14 @@
                         <StaticSelectedStyle BackColor="#1C5E55" />
                     </asp:Menu>
                 </td>
-                <td>
+                <td style="border-bottom-style: solid">
+                    &nbsp;</td>
+                <td style="border-bottom-style: solid">
                     &nbsp;</td>
             </tr>
             <tr>
+                <td class="style3">
+                            &nbsp;</td>
                 <td colspan="2">
                             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
@@ -69,9 +100,15 @@
                 </td>
                 <td>
                             &nbsp;</td>
+                <td>
+                            &nbsp;</td>
             </tr>
             <tr>
+                <td class="style3">
+                    &nbsp;</td>
                 <td class="style2">
+                    &nbsp;</td>
+                <td>
                     &nbsp;</td>
                 <td>
                     &nbsp;</td>

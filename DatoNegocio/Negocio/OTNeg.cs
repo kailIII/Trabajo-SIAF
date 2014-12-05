@@ -21,10 +21,16 @@ namespace Negocio
         #endregion
 
         #region Agregar OT
-        public int AgregarOT()
+        public int AgregarOT(int ID_SUCURSAL, int ID_CLIENTE, int NETO_OT, DateTime FECHA_OT, string ESTADO)
         {
             Ot o = new Ot();
             OT oo = new OT();
+            o.Id_sucursal = ID_SUCURSAL;
+            o.Id_cliente = ID_CLIENTE;
+            o.Neto_ot = NETO_OT;
+            o.Fecha_ot = FECHA_OT;
+            o.Estado = ESTADO;
+
             oo.ID_SUCURSAL = o.Id_sucursal;
             oo.ID_CLIENTE = o.Id_cliente;
             oo.NETO_OT = o.Neto_ot;
@@ -32,7 +38,10 @@ namespace Negocio
             oo.ESTADO = o.Estado;
 
             ModeloEntidades.AddToOT(oo);
-            return ModeloEntidades.SaveChanges();
+            ModeloEntidades.SaveChanges();
+            int res = oo.ID_OT;
+
+            return res;
         }
         #endregion
 

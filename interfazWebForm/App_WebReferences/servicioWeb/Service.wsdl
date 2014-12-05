@@ -2345,10 +2345,10 @@
   <wsdl:service name="WCFTrans">
     <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Trabajo practico taller y clase de Ingenieria de software modelo 3 capas con servidor web</wsdl:documentation>
     <wsdl:port name="WCFTransSoap" binding="tns:WCFTransSoap">
-      <soap:address location="http://localhost:62012/ServicioWebWCF/Service.asmx" />
+      <soap:address location="http://localhost:51028/ServicioWebWCF/Service.asmx" />
     </wsdl:port>
     <wsdl:port name="WCFTransSoap12" binding="tns:WCFTransSoap12">
-      <soap12:address location="http://localhost:62012/ServicioWebWCF/Service.asmx" />
+      <soap12:address location="http://localhost:51028/ServicioWebWCF/Service.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

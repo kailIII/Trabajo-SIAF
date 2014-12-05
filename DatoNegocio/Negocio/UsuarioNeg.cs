@@ -6,6 +6,7 @@ using System.Data; //necesario para usar EntityKey
 using Datos;
 using BusinessEntities;
 
+
 namespace Negocio
 {
     public class UsuarioNeg

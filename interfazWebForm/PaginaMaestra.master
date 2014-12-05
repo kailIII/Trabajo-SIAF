@@ -79,6 +79,7 @@
                             <asp:MenuItem NavigateUrl="~/Tipo.aspx" Text="Tipo" Value="Tipo"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Usuario.aspx" Text="Usuario" Value="Usuario">
                             </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/ot.aspx" Text="OT" Value="OT"></asp:MenuItem>
                         </Items>
                         <StaticHoverStyle BackColor="#666666" ForeColor="White" />
                         <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />

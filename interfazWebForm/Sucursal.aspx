@@ -1,32 +1,46 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMaestra.master" AutoEventWireup="true" CodeFile="Sucursal.aspx.cs" Inherits="Sucursal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .style6
+        {
+            width: 58px;
+        }
+        .style7
+        {
+            width: 196px;
+        }
+        .style8
+        {
+            width: 128px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
         <br />Mantenedor Sucursal</p>
     <hr />
     <br />
-    <table class="style1">
+    <table class="style7">
         <tr>
-            <td>
+            <td class="style6">
                 Direccion
             </td>
-            <td>
+            <td class="style8">
                 <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 Telefono</td>
-            <td style="margin-left: 40px">
+            <td style="margin-left: 40px" class="style8">
                 <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 &nbsp;</td>
-            <td style="margin-left: 40px">
+            <td style="margin-left: 40px" class="style8">
                 <asp:Button ID="btnCrear" runat="server" Text="Crear" 
                     onclick="btnCrear_Click" />
             </td>

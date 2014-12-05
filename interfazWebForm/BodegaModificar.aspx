@@ -8,7 +8,12 @@
         Modificar Bodega</p>
     <p>
         <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
-            DataSourceID="ObjectModificarBodega" Height="50px" Width="125px">
+            DataSourceID="ObjectModificarBodega" Height="50px" Width="125px" 
+            CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
+            <CommandRowStyle BackColor="#C5BBAF" Font-Bold="True" />
+            <EditRowStyle BackColor="#7C6F57" />
+            <FieldHeaderStyle BackColor="#D0D0D0" Font-Bold="True" />
             <Fields>
                 <asp:BoundField DataField="COD_BODEGA" HeaderText="COD_BODEGA" 
                     SortExpression="COD_BODEGA" />
@@ -16,6 +21,10 @@
                     SortExpression="ID_USUARIO" />
                 <asp:CommandField ShowEditButton="True" />
             </Fields>
+            <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#E3EAEB" />
         </asp:DetailsView>
         <asp:ObjectDataSource ID="ObjectModificarBodega" runat="server" 
             SelectMethod="MostrarBodegaByID" TypeName="servicioWeb.WCFTrans" 

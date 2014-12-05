@@ -20,10 +20,16 @@ namespace Negocio
         #endregion
 
         #region Agregar Detalle
-        public int AgregarDetalle()
+        public int AgregarDetalle(string PRODUCTO_COD_DETALLE,string PRODUCTO_COD,int CANTIDAD_MINIMA,int CANTIDAD_ACTUAL,int VALOR)
         {
             Detalle d = new Detalle();
             DETALLE dd = new DETALLE();
+            d.Producto_cod_detalle = PRODUCTO_COD_DETALLE;
+            d.Producto_cod = PRODUCTO_COD;
+            d.Cantidad_minima = CANTIDAD_MINIMA;
+            d.Cantidad_actual = CANTIDAD_ACTUAL;
+            d.Valor = VALOR;
+
             dd.PRODUCTO_COD_DETALLE = d.Producto_cod_detalle;
             dd.PRODUCTO_COD = d.Producto_cod;
             dd.CANTIDAD_MINIMA = d.Cantidad_actual;

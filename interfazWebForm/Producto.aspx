@@ -97,6 +97,10 @@
                 SortExpression="Cod_bodega" />
             <asp:BoundField DataField="Nombre_producto" HeaderText="Nombre_producto" 
                 SortExpression="Nombre_producto" />
+            <asp:HyperLinkField DataNavigateUrlFields="Producto_cod" 
+                DataNavigateUrlFormatString="DetalleProducto.aspx?id_producto={0}" 
+                DataTextField="Producto_cod" HeaderText="Detalle Producto" 
+                Text="Detalle Producto" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

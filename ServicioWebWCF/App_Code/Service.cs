@@ -159,15 +159,9 @@ public class Service : System.Web.Services.WebService
     [WebMethod(Description = "Agregar Detalle")]
     public int AgregarDetalle(string PRODUCTO_COD_DETALLE, string PRODUCTO_COD, int CANTIDAD_MINIMA, int CANTIDAD_ACTUAL, int VALOR)
     {
-        Detalle detalle = new Detalle();
-        detalle.Producto_cod_detalle = PRODUCTO_COD_DETALLE;
-        detalle.Producto_cod = PRODUCTO_COD;
-        detalle.Cantidad_minima = CANTIDAD_MINIMA;
-        detalle.Cantidad_actual = CANTIDAD_ACTUAL;
-        detalle.Valor = VALOR;
         DetalleNeg dneg = new DetalleNeg();
 
-        return dneg.AgregarDetalle();
+        return dneg.AgregarDetalle(PRODUCTO_COD_DETALLE,PRODUCTO_COD,CANTIDAD_MINIMA,CANTIDAD_ACTUAL,VALOR);
     }
     #endregion //fin agregar detalle
 
@@ -335,15 +329,9 @@ public class Service : System.Web.Services.WebService
     [WebMethod(Description = "Agregar ot")]
     public int AgregarOt(int ID_SUCURSAL, int ID_CLIENTE, int NETO_OT, DateTime FECHA_OT, string ESTADO)
     {
-        Ot o = new Ot();
-        o.Id_sucursal = ID_SUCURSAL;
-        o.Id_cliente = ID_CLIENTE;
-        o.Neto_ot = NETO_OT;
-        o.Fecha_ot = FECHA_OT;
-        o.Estado = ESTADO;
         OTNeg oneg = new OTNeg();
 
-        return oneg.AgregarOT();
+        return oneg.AgregarOT(ID_SUCURSAL,ID_CLIENTE,NETO_OT,FECHA_OT,ESTADO);
     }
     #endregion //fin agregar cliente
 

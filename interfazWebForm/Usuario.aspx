@@ -1,16 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMaestra.master" AutoEventWireup="true" CodeFile="Usuario.aspx.cs" Inherits="Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .style6
+        {
+            width: 102px;
+        }
+        .style7
+        {
+            width: 309px;
+        }
+        .style8
+        {
+            width: 197px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
         <br />Mantenedor Usuario</p>
         <hr />
-    <table class="style1">
+    <table class="style7">
         <tr>
-            <td>
+            <td class="style6">
                 Sucursal</td>
-            <td>
+            <td class="style8">
                 <asp:DropDownList ID="ddSucursal" runat="server" DataSourceID="ObjSucursales" 
                     DataTextField="Direccion_sucursal" DataValueField="Id_sucursal">
                 </asp:DropDownList>
@@ -20,38 +34,38 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 Nombre Usuario</td>
-            <td>
+            <td class="style8">
                 <asp:TextBox ID="txtNUsuario" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 Password</td>
-            <td>
+            <td class="style8">
                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 Nombre
             </td>
-            <td>
+            <td class="style8">
                 <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 Apellido</td>
-            <td>
+            <td class="style8">
                 <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 Perfil</td>
-            <td>
+            <td class="style8">
                 <asp:DropDownList ID="ddPerfil" runat="server">
                     <asp:ListItem Value="0">Seleccione</asp:ListItem>
                     <asp:ListItem Value="admin">Administrador</asp:ListItem>
@@ -62,9 +76,9 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style6">
                 &nbsp;</td>
-            <td>
+            <td class="style8">
                 <asp:Button ID="btnCrear" runat="server" Text="Agregar" 
                     onclick="btnCrear_Click" />
             </td>

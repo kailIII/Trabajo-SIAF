@@ -56,10 +56,33 @@ namespace Negocio
             detalle.PRODUCTO_COD = d.Producto_cod;
             detalle.CANTIDAD_MINIMA = d.Cantidad_minima;
             detalle.CANTIDAD_ACTUAL = d.Cantidad_actual;
-            detalle.VALOR = valor;
+            detalle.VALOR = d.Valor;
             EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.DETALLE", detalle);
             Object ActualizaDetalle; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
             if (ModeloEntidades.TryGetObjectByKey(key, out ActualizaDetalle))
+            {
+                ModeloEntidades.ApplyCurrentValues(key.EntitySetName, detalle);
+                resultado = ModeloEntidades.SaveChanges();
+            }
+            return resultado;
+        }
+        #endregion
+
+        #region Modificar Detalle cantidad actual By ID Producto
+        public int ModificarDetalleCantidadActualByIDProducto(string producto_cod,int cant_actual)
+        {
+            int resultado = 0;
+            DETALLE detalle = new DETALLE();
+            Detalle d = new Detalle();
+            d.Producto_cod = producto_cod;
+            d.Cantidad_actual = cant_actual;
+
+            detalle.PRODUCTO_COD = d.Producto_cod;
+            detalle.CANTIDAD_ACTUAL = d.Cantidad_actual;
+
+            EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.DETALLE", detalle);
+            Object ActualizaDetalleCantidadActual; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
+            if (ModeloEntidades.TryGetObjectByKey(key, out ActualizaDetalleCantidadActual))
             {
                 ModeloEntidades.ApplyCurrentValues(key.EntitySetName, detalle);
                 resultado = ModeloEntidades.SaveChanges();
@@ -91,6 +114,14 @@ namespace Negocio
         public DETALLE MostrarDetalleByID(string pro_cod_detalle)
         {
             var detalle = ModeloEntidades.DETALLE.Where(d => d.PRODUCTO_COD_DETALLE == pro_cod_detalle).FirstOrDefault();
+            return detalle;
+        }
+        #endregion
+
+        #region Mostrar Detalle By ID Producto
+        public DETALLE MostrarDetalleByIDProducto(string PRODUCTO_COD)
+        {
+            var detalle = ModeloEntidades.DETALLE.Where(d => d.PRODUCTO_COD == PRODUCTO_COD).FirstOrDefault();
             return detalle;
         }
         #endregion

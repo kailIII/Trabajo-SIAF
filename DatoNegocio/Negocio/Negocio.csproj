@@ -60,7 +60,7 @@
       <Name>BusinessEntities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{F73EC88A-925D-46F6-9CC3-2286257A470D}</Project>
+      <Project>{73D7F835-34ED-4A08-97D6-3C1D2305A201}</Project>
       <Name>Datos</Name>
     </ProjectReference>
   </ItemGroup>

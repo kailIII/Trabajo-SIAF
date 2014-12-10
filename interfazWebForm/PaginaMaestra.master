@@ -79,7 +79,16 @@
                             <asp:MenuItem NavigateUrl="~/Tipo.aspx" Text="Tipo" Value="Tipo"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Usuario.aspx" Text="Usuario" Value="Usuario">
                             </asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/ot.aspx" Text="OT" Value="OT"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/ot.aspx" Text="Crear OT" Value="OT">
+                                <asp:MenuItem Text="Modificar OT" Value="Modificar OT" 
+                                    NavigateUrl="~/OtModificar.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="Informe Bodega" Value="Informe Bodega">
+                                <asp:MenuItem NavigateUrl="~/BodegaInforme.aspx" Text="Bodega" Value="Bodega">
+                                </asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="BodegaTipo.aspx" Text="Tipo" Value="Tipo">
+                                </asp:MenuItem>
+                            </asp:MenuItem>
                         </Items>
                         <StaticHoverStyle BackColor="#666666" ForeColor="White" />
                         <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />

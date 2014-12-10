@@ -76,6 +76,29 @@ namespace Negocio
         }
         #endregion
 
+        #region Modificar OT Neto By ID
+        public int ModificarOTNetoByID(int ID_OT,int NETO_OT)
+        {
+            int resultado = 0;
+            Ot o = new Ot();
+            OT ot = new OT();
+            o.Id_ot = ID_OT;
+            o.Neto_ot = NETO_OT;
+
+            ot.ID_OT = o.Id_ot;
+            ot.NETO_OT = o.Neto_ot;
+
+            EntityKey key = ModeloEntidades.CreateEntityKey("SIAFEntities.OT", ot);
+            Object ActualizaOTNeto; // se crea esta variable segun actualizacion, ahora es usuario, luego puede ser ActualizaProducto
+            if (ModeloEntidades.TryGetObjectByKey(key, out ActualizaOTNeto))
+            {
+                ModeloEntidades.ApplyCurrentValues(key.EntitySetName, ot);
+                resultado = ModeloEntidades.SaveChanges();
+            }
+            return resultado;
+        }
+        #endregion
+
         #region Mostrar All OT
         public List<Ot> MostrarAllOT()
         {

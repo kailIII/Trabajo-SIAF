@@ -77,5 +77,13 @@ namespace Negocio
             return tipo;
         }
         #endregion
+
+        #region informe tipo por id tipo
+        public List<spInformeTipo> spInformeTipo(int ID_TIPO)
+        {
+            var list = ModeloEntidades.spInformeTipo(ID_TIPO);
+            return list.ToList();
+        }
+        #endregion
     }
 }

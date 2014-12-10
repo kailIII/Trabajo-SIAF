@@ -80,5 +80,13 @@ namespace Negocio
 
         }
         #endregion
+
+        #region informe Bodega by codigo bodega
+        public List<spInformeBodega> spInformeBodega(string COD_BODEGA)
+        {
+            var list = ModeloEntidades.spInformeBodega(COD_BODEGA);
+            return list.ToList();
+        }
+        #endregion
     }
 }

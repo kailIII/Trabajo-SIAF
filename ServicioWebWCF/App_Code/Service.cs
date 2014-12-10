@@ -110,6 +110,16 @@ public class Service : System.Web.Services.WebService
     }
     #endregion //fin muestra tipo por id
 
+    #region informe tipo por id tipo
+    [WebMethod(Description = "informe tipo")]
+    public List<spInformeTipo> spInformeTipo(int ID_TIPO)
+    {
+        TipoNeg tneg = new TipoNeg();
+        var lista = tneg.spInformeTipo(ID_TIPO);
+        return lista.ToList();
+    }
+    #endregion
+
     #endregion //fin region tipo
 
     #region PRODUCTO
@@ -174,6 +184,15 @@ public class Service : System.Web.Services.WebService
     }
     #endregion //fin modificar DETALLE
 
+    #region Modificar Detalle Cantidad Actual por ID Producto
+    [WebMethod(Description = "Modifica detalle Cantidad Actual por ID Producto, con parametros de entrada")]
+    public int ModificarDetalleCantidadActualByID(string PRODUCTO_COD,int CANTIDAD_NUEVA)
+    {
+        DetalleNeg dneg = new DetalleNeg();
+        return dneg.ModificarDetalleCantidadActualByIDProducto(PRODUCTO_COD, CANTIDAD_NUEVA);
+    }
+    #endregion //fin modificar DETALLE
+
     #region Listar Todos los DETALLES
     [WebMethod(Description = "Muestra todos los detalles ingresados")]
     public List<Detalle> MotrarAllDetalle()
@@ -193,20 +212,26 @@ public class Service : System.Web.Services.WebService
     }
     #endregion //fin muestra detalle por id
 
+    #region listar detalle por ID producto
+    [WebMethod(Description = "Muestra detalle, recibe parametro ID producto")]
+    public DETALLE MostrarDetalleByIDProducto(string PRODUCTO_COD)
+    {
+        DetalleNeg dneg = new DetalleNeg();
+        return dneg.MostrarDetalleByIDProducto(PRODUCTO_COD);
+    }
+    #endregion //fin muestra detalle por id
+
     #endregion //fin region detalle
 
     #region PRODUCTOS OT
 
     #region Agregar PRODUCTOS OT
     [WebMethod(Description = "Agregar producto ot")]
-    public int AgregarProductoOt(string PRODUCTO_COD, int ID_OT)
+    public int AgregarProductoOt(string PRODUCTO_COD, int ID_OT, int CANTIDAD,int VALOR_TOTAL)
     {
-        Productos_ot pot = new Productos_ot();
-        pot.Producto_cod = PRODUCTO_COD;
-        pot.Id_ot = ID_OT;
         Productos_otNeg potneg = new Productos_otNeg();
 
-        return potneg.AgregarProductosOt();
+        return potneg.AgregarProductosOt(PRODUCTO_COD,ID_OT,CANTIDAD,VALOR_TOTAL);
     }
     #endregion //fin agregar productos ot
 
@@ -237,6 +262,44 @@ public class Service : System.Web.Services.WebService
         return potneg.MostrarProductoOTByID(ID_PRODUCTO_OT);
     }
     #endregion //fin muestra productos ot por id
+
+    #region listar productos ot por ID del producto
+    [WebMethod(Description = "Muestra productos ot, recibe parametro ID producto")]
+    public PRODUCTOS_OT MostrarProductosOtByIDProducto(string PRODUCTO_COD)
+    {
+        Productos_otNeg potneg = new Productos_otNeg();
+        return potneg.MostrarProductoOTByIDProducto(PRODUCTO_COD);
+    }
+    #endregion //fin muestra productos ot por id producto
+
+    #region listar productos ot por ID_OT
+    [WebMethod(Description = "Muestra productos ot, recibe parametro ID_OT")]
+    public List<spSeleccionarTodoByIdOt> MostrarProductosOtByIDOT(int ID_OT)
+    {
+        Productos_otNeg potneg = new Productos_otNeg();
+        return potneg.MostrarProductoOTByIDOT(ID_OT);
+    }
+    #endregion //fin muestra productos ot por id ot
+
+    #region Borrar productos ot por ID_PRODUCTO_OT
+    [WebMethod(Description = "Borrar productos ot, recibe parametro ID_PRODUCTO_OT")]
+    public int BorrarProductoOTBYIDPRODUCTOOT(int ID_PRODUCTO_OT)
+    {
+        Productos_otNeg potneg = new Productos_otNeg();
+        return potneg.BorrarProductoOT(ID_PRODUCTO_OT);
+    }
+    #endregion //fin muestra productos ot por id ot
+
+    #region informe bodega por codigo bodega
+    [WebMethod(Description = "informe bodega")]
+    public List<spInformeBodega> spInformeBodega(string COD_BODEGA)
+    {
+        BodegaNeg bneg = new BodegaNeg();
+        var list = bneg.spInformeBodega(COD_BODEGA);
+        return list.ToList();
+    }
+    #endregion
+
 
     #endregion //fin region productos ot
 
@@ -341,6 +404,15 @@ public class Service : System.Web.Services.WebService
     {
         OTNeg oneg = new OTNeg();
         return oneg.ModificarOTByID(ID_OT,ID_SUCURSAL,ID_CLIENTE,NETO_OT,FECHA_OT,ESTADO);
+    }
+    #endregion //fin modificar cliente
+
+    #region Modificar ot NETO por ID
+    [WebMethod(Description = "Modifica ot NETO por ID, con parametros de entrada")]
+    public int ModificarOtNetobyID(int ID_OT,int NETO_NUEVO)
+    {
+        OTNeg oneg = new OTNeg();
+        return oneg.ModificarOTNetoByID(ID_OT, NETO_NUEVO);
     }
     #endregion //fin modificar cliente
 

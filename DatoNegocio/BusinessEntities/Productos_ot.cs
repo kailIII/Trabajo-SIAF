@@ -28,5 +28,21 @@ namespace BusinessEntities
             get { return id_ot; }
             set { id_ot = value; }
         }
+        private int cantidad;
+
+        public int Cantidad
+        {
+            get { return cantidad; }
+            set { cantidad = value; }
+        }
+
+        private int valor_total;
+
+        public int Valor_total
+        {
+            get { return valor_total; }
+            set { valor_total = value; }
+        }
+
     }
 }

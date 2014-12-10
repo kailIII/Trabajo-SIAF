@@ -22,7 +22,6 @@ public partial class ot : System.Web.UI.Page
         int NETO_OT = 0;
         string ESTADO = "Activa";
         int id_ot = servicio.AgregarOt(ID_SUCURSAL, ID_CLIENTE, NETO_OT, FECHA_OT, ESTADO);
-        Session["id_ot"] = id_ot;
-        Response.Redirect("ProductosOT.aspx");
+        Response.Redirect("ProductosOT.aspx?id_ot="+id_ot+"");
     }
 }

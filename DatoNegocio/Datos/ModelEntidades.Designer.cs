@@ -375,6 +375,86 @@ namespace Datos
 
         #endregion
 
+        #region Importaciones de funciones
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="iD_OT">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<spSeleccionarTodoByIdOt> spSeleccionarTodoByIdOt(Nullable<global::System.Int32> iD_OT)
+        {
+            ObjectParameter iD_OTParameter;
+            if (iD_OT.HasValue)
+            {
+                iD_OTParameter = new ObjectParameter("ID_OT", iD_OT);
+            }
+            else
+            {
+                iD_OTParameter = new ObjectParameter("ID_OT", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<spSeleccionarTodoByIdOt>("spSeleccionarTodoByIdOt", iD_OTParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="iD_PRODUCTO_OT">No hay documentación de metadatos disponible.</param>
+        public int spBorrarProductoOT(Nullable<global::System.Int32> iD_PRODUCTO_OT)
+        {
+            ObjectParameter iD_PRODUCTO_OTParameter;
+            if (iD_PRODUCTO_OT.HasValue)
+            {
+                iD_PRODUCTO_OTParameter = new ObjectParameter("ID_PRODUCTO_OT", iD_PRODUCTO_OT);
+            }
+            else
+            {
+                iD_PRODUCTO_OTParameter = new ObjectParameter("ID_PRODUCTO_OT", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction("spBorrarProductoOT", iD_PRODUCTO_OTParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cOD_BODEGA">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<spInformeBodega> spInformeBodega(global::System.String cOD_BODEGA)
+        {
+            ObjectParameter cOD_BODEGAParameter;
+            if (cOD_BODEGA != null)
+            {
+                cOD_BODEGAParameter = new ObjectParameter("COD_BODEGA", cOD_BODEGA);
+            }
+            else
+            {
+                cOD_BODEGAParameter = new ObjectParameter("COD_BODEGA", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<spInformeBodega>("spInformeBodega", cOD_BODEGAParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="iD_TIPO">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<spInformeTipo> spInformeTipo(Nullable<global::System.Int32> iD_TIPO)
+        {
+            ObjectParameter iD_TIPOParameter;
+            if (iD_TIPO.HasValue)
+            {
+                iD_TIPOParameter = new ObjectParameter("ID_TIPO", iD_TIPO);
+            }
+            else
+            {
+                iD_TIPOParameter = new ObjectParameter("ID_TIPO", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<spInformeTipo>("spInformeTipo", iD_TIPOParameter);
+        }
+
+        #endregion
+
     }
 
     #endregion
@@ -2049,6 +2129,54 @@ namespace Datos
         private Nullable<global::System.Int32> _ID_OT;
         partial void OnID_OTChanging(Nullable<global::System.Int32> value);
         partial void OnID_OTChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CANTIDAD
+        {
+            get
+            {
+                return _CANTIDAD;
+            }
+            set
+            {
+                OnCANTIDADChanging(value);
+                ReportPropertyChanging("CANTIDAD");
+                _CANTIDAD = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CANTIDAD");
+                OnCANTIDADChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CANTIDAD;
+        partial void OnCANTIDADChanging(Nullable<global::System.Int32> value);
+        partial void OnCANTIDADChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VALOR_TOTAL
+        {
+            get
+            {
+                return _VALOR_TOTAL;
+            }
+            set
+            {
+                OnVALOR_TOTALChanging(value);
+                ReportPropertyChanging("VALOR_TOTAL");
+                _VALOR_TOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VALOR_TOTAL");
+                OnVALOR_TOTALChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VALOR_TOTAL;
+        partial void OnVALOR_TOTALChanging(Nullable<global::System.Int32> value);
+        partial void OnVALOR_TOTALChanged();
 
         #endregion
 
@@ -2790,6 +2918,485 @@ namespace Datos
                 }
             }
         }
+
+        #endregion
+
+    }
+
+    #endregion
+
+    #region ComplexTypes
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="SIAFModel", Name="spInformeBodega")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class spInformeBodega : ComplexObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto spInformeBodega.
+        /// </summary>
+        /// <param name="cOD_BODEGA">Valor inicial de la propiedad COD_BODEGA.</param>
+        /// <param name="pRODUCTO_COD">Valor inicial de la propiedad PRODUCTO_COD.</param>
+        public static spInformeBodega CreatespInformeBodega(global::System.String cOD_BODEGA, global::System.String pRODUCTO_COD)
+        {
+            spInformeBodega spInformeBodega = new spInformeBodega();
+            spInformeBodega.COD_BODEGA = cOD_BODEGA;
+            spInformeBodega.PRODUCTO_COD = pRODUCTO_COD;
+            return spInformeBodega;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String COD_BODEGA
+        {
+            get
+            {
+                return _COD_BODEGA;
+            }
+            set
+            {
+                OnCOD_BODEGAChanging(value);
+                ReportPropertyChanging("COD_BODEGA");
+                _COD_BODEGA = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("COD_BODEGA");
+                OnCOD_BODEGAChanged();
+            }
+        }
+        private global::System.String _COD_BODEGA;
+        partial void OnCOD_BODEGAChanging(global::System.String value);
+        partial void OnCOD_BODEGAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PRODUCTO_COD
+        {
+            get
+            {
+                return _PRODUCTO_COD;
+            }
+            set
+            {
+                OnPRODUCTO_CODChanging(value);
+                ReportPropertyChanging("PRODUCTO_COD");
+                _PRODUCTO_COD = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PRODUCTO_COD");
+                OnPRODUCTO_CODChanged();
+            }
+        }
+        private global::System.String _PRODUCTO_COD;
+        partial void OnPRODUCTO_CODChanging(global::System.String value);
+        partial void OnPRODUCTO_CODChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NOMBRE_PRODUCTO
+        {
+            get
+            {
+                return _NOMBRE_PRODUCTO;
+            }
+            set
+            {
+                OnNOMBRE_PRODUCTOChanging(value);
+                ReportPropertyChanging("NOMBRE_PRODUCTO");
+                _NOMBRE_PRODUCTO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NOMBRE_PRODUCTO");
+                OnNOMBRE_PRODUCTOChanged();
+            }
+        }
+        private global::System.String _NOMBRE_PRODUCTO;
+        partial void OnNOMBRE_PRODUCTOChanging(global::System.String value);
+        partial void OnNOMBRE_PRODUCTOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CANTIDAD_ACTUAL
+        {
+            get
+            {
+                return _CANTIDAD_ACTUAL;
+            }
+            set
+            {
+                OnCANTIDAD_ACTUALChanging(value);
+                ReportPropertyChanging("CANTIDAD_ACTUAL");
+                _CANTIDAD_ACTUAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CANTIDAD_ACTUAL");
+                OnCANTIDAD_ACTUALChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CANTIDAD_ACTUAL;
+        partial void OnCANTIDAD_ACTUALChanging(Nullable<global::System.Int32> value);
+        partial void OnCANTIDAD_ACTUALChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VALOR
+        {
+            get
+            {
+                return _VALOR;
+            }
+            set
+            {
+                OnVALORChanging(value);
+                ReportPropertyChanging("VALOR");
+                _VALOR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VALOR");
+                OnVALORChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VALOR;
+        partial void OnVALORChanging(Nullable<global::System.Int32> value);
+        partial void OnVALORChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="SIAFModel", Name="spInformeTipo")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class spInformeTipo : ComplexObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto spInformeTipo.
+        /// </summary>
+        /// <param name="iD_TIPO">Valor inicial de la propiedad ID_TIPO.</param>
+        /// <param name="cOD_BODEGA">Valor inicial de la propiedad COD_BODEGA.</param>
+        public static spInformeTipo CreatespInformeTipo(global::System.Int32 iD_TIPO, global::System.String cOD_BODEGA)
+        {
+            spInformeTipo spInformeTipo = new spInformeTipo();
+            spInformeTipo.ID_TIPO = iD_TIPO;
+            spInformeTipo.COD_BODEGA = cOD_BODEGA;
+            return spInformeTipo;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_TIPO
+        {
+            get
+            {
+                return _ID_TIPO;
+            }
+            set
+            {
+                OnID_TIPOChanging(value);
+                ReportPropertyChanging("ID_TIPO");
+                _ID_TIPO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_TIPO");
+                OnID_TIPOChanged();
+            }
+        }
+        private global::System.Int32 _ID_TIPO;
+        partial void OnID_TIPOChanging(global::System.Int32 value);
+        partial void OnID_TIPOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NOMBRE_TIPO
+        {
+            get
+            {
+                return _NOMBRE_TIPO;
+            }
+            set
+            {
+                OnNOMBRE_TIPOChanging(value);
+                ReportPropertyChanging("NOMBRE_TIPO");
+                _NOMBRE_TIPO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NOMBRE_TIPO");
+                OnNOMBRE_TIPOChanged();
+            }
+        }
+        private global::System.String _NOMBRE_TIPO;
+        partial void OnNOMBRE_TIPOChanging(global::System.String value);
+        partial void OnNOMBRE_TIPOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NOMBRE_PRODUCTO
+        {
+            get
+            {
+                return _NOMBRE_PRODUCTO;
+            }
+            set
+            {
+                OnNOMBRE_PRODUCTOChanging(value);
+                ReportPropertyChanging("NOMBRE_PRODUCTO");
+                _NOMBRE_PRODUCTO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NOMBRE_PRODUCTO");
+                OnNOMBRE_PRODUCTOChanged();
+            }
+        }
+        private global::System.String _NOMBRE_PRODUCTO;
+        partial void OnNOMBRE_PRODUCTOChanging(global::System.String value);
+        partial void OnNOMBRE_PRODUCTOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String COD_BODEGA
+        {
+            get
+            {
+                return _COD_BODEGA;
+            }
+            set
+            {
+                OnCOD_BODEGAChanging(value);
+                ReportPropertyChanging("COD_BODEGA");
+                _COD_BODEGA = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("COD_BODEGA");
+                OnCOD_BODEGAChanged();
+            }
+        }
+        private global::System.String _COD_BODEGA;
+        partial void OnCOD_BODEGAChanging(global::System.String value);
+        partial void OnCOD_BODEGAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CANTIDAD_ACTUAL
+        {
+            get
+            {
+                return _CANTIDAD_ACTUAL;
+            }
+            set
+            {
+                OnCANTIDAD_ACTUALChanging(value);
+                ReportPropertyChanging("CANTIDAD_ACTUAL");
+                _CANTIDAD_ACTUAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CANTIDAD_ACTUAL");
+                OnCANTIDAD_ACTUALChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CANTIDAD_ACTUAL;
+        partial void OnCANTIDAD_ACTUALChanging(Nullable<global::System.Int32> value);
+        partial void OnCANTIDAD_ACTUALChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VALOR
+        {
+            get
+            {
+                return _VALOR;
+            }
+            set
+            {
+                OnVALORChanging(value);
+                ReportPropertyChanging("VALOR");
+                _VALOR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VALOR");
+                OnVALORChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VALOR;
+        partial void OnVALORChanging(Nullable<global::System.Int32> value);
+        partial void OnVALORChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="SIAFModel", Name="spSeleccionarTodoByIdOt")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class spSeleccionarTodoByIdOt : ComplexObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto spSeleccionarTodoByIdOt.
+        /// </summary>
+        /// <param name="id_producto_ot">Valor inicial de la propiedad id_producto_ot.</param>
+        public static spSeleccionarTodoByIdOt CreatespSeleccionarTodoByIdOt(global::System.Int32 id_producto_ot)
+        {
+            spSeleccionarTodoByIdOt spSeleccionarTodoByIdOt = new spSeleccionarTodoByIdOt();
+            spSeleccionarTodoByIdOt.id_producto_ot = id_producto_ot;
+            return spSeleccionarTodoByIdOt;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_producto_ot
+        {
+            get
+            {
+                return _id_producto_ot;
+            }
+            set
+            {
+                Onid_producto_otChanging(value);
+                ReportPropertyChanging("id_producto_ot");
+                _id_producto_ot = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_producto_ot");
+                Onid_producto_otChanged();
+            }
+        }
+        private global::System.Int32 _id_producto_ot;
+        partial void Onid_producto_otChanging(global::System.Int32 value);
+        partial void Onid_producto_otChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> id_ot
+        {
+            get
+            {
+                return _id_ot;
+            }
+            set
+            {
+                Onid_otChanging(value);
+                ReportPropertyChanging("id_ot");
+                _id_ot = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_ot");
+                Onid_otChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _id_ot;
+        partial void Onid_otChanging(Nullable<global::System.Int32> value);
+        partial void Onid_otChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String nombre_producto
+        {
+            get
+            {
+                return _nombre_producto;
+            }
+            set
+            {
+                Onnombre_productoChanging(value);
+                ReportPropertyChanging("nombre_producto");
+                _nombre_producto = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("nombre_producto");
+                Onnombre_productoChanged();
+            }
+        }
+        private global::System.String _nombre_producto;
+        partial void Onnombre_productoChanging(global::System.String value);
+        partial void Onnombre_productoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> cantidad
+        {
+            get
+            {
+                return _cantidad;
+            }
+            set
+            {
+                OncantidadChanging(value);
+                ReportPropertyChanging("cantidad");
+                _cantidad = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cantidad");
+                OncantidadChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _cantidad;
+        partial void OncantidadChanging(Nullable<global::System.Int32> value);
+        partial void OncantidadChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> valor_total
+        {
+            get
+            {
+                return _valor_total;
+            }
+            set
+            {
+                Onvalor_totalChanging(value);
+                ReportPropertyChanging("valor_total");
+                _valor_total = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("valor_total");
+                Onvalor_totalChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _valor_total;
+        partial void Onvalor_totalChanging(Nullable<global::System.Int32> value);
+        partial void Onvalor_totalChanged();
 
         #endregion
 

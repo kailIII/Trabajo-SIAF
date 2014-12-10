@@ -230,6 +230,44 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
+      <s:element name="spInformeTipo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSpInformeTipo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="spInformeTipo" nillable="true" type="tns:spInformeTipo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="spInformeTipo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ComplexObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID_TIPO" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_TIPO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_PRODUCTO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_ACTUAL" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="VALOR" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ComplexObject" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:StructuralObject" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="spInformeTipoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="spInformeTipoResult" type="tns:ArrayOfSpInformeTipo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AgregarProducto">
         <s:complexType>
           <s:sequence>
@@ -365,6 +403,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ModificarDetalleCantidadActualByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_NUEVA" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarDetalleCantidadActualByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarDetalleCantidadActualByIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="MotrarAllDetalle">
         <s:complexType />
       </s:element>
@@ -422,11 +475,27 @@
           <s:extension base="tns:EntityReference" />
         </s:complexContent>
       </s:complexType>
+      <s:element name="MostrarDetalleByIDProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarDetalleByIDProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarDetalleByIDProductoResult" type="tns:DETALLE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AgregarProductoOt">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VALOR_TOTAL" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -461,6 +530,8 @@
           <s:element minOccurs="1" maxOccurs="1" name="Id_producto_ot" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Producto_cod" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Id_ot" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Valor_total" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfProductos_ot">
@@ -496,6 +567,8 @@
               <s:element minOccurs="1" maxOccurs="1" name="ID_PRODUCTO_OT" type="s:int" />
               <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
               <s:element minOccurs="1" maxOccurs="1" name="ID_OT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="VALOR_TOTAL" nillable="true" type="s:int" />
               <s:element minOccurs="0" maxOccurs="1" name="OTReference" type="tns:EntityReferenceOfOT" />
               <s:element minOccurs="0" maxOccurs="1" name="PRODUCTOReference" type="tns:EntityReferenceOfPRODUCTO" />
             </s:sequence>
@@ -507,6 +580,98 @@
           <s:extension base="tns:EntityReference" />
         </s:complexContent>
       </s:complexType>
+      <s:element name="MostrarProductosOtByIDProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarProductosOtByIDProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarProductosOtByIDProductoResult" type="tns:PRODUCTOS_OT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MostrarProductosOtByIDOT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSpSeleccionarTodoByIdOt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="spSeleccionarTodoByIdOt" nillable="true" type="tns:spSeleccionarTodoByIdOt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="spSeleccionarTodoByIdOt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ComplexObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="id_producto_ot" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="id_ot" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="nombre_producto" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="cantidad" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="valor_total" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="MostrarProductosOtByIDOTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarProductosOtByIDOTResult" type="tns:ArrayOfSpSeleccionarTodoByIdOt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BorrarProductoOTBYIDPRODUCTOOT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_PRODUCTO_OT" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BorrarProductoOTBYIDPRODUCTOOTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BorrarProductoOTBYIDPRODUCTOOTResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="spInformeBodega">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSpInformeBodega">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="spInformeBodega" nillable="true" type="tns:spInformeBodega" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="spInformeBodega">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ComplexObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="COD_BODEGA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRODUCTO_COD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_PRODUCTO" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CANTIDAD_ACTUAL" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="VALOR" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="spInformeBodegaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="spInformeBodegaResult" type="tns:ArrayOfSpInformeBodega" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AgregarBodega">
         <s:complexType>
           <s:sequence>
@@ -706,6 +871,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="ModificarOtbyIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarOtNetobyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID_OT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NETO_NUEVO" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarOtNetobyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificarOtNetobyIDResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1083,6 +1263,12 @@
   <wsdl:message name="MostrarTipoByIDSoapOut">
     <wsdl:part name="parameters" element="tns:MostrarTipoByIDResponse" />
   </wsdl:message>
+  <wsdl:message name="spInformeTipoSoapIn">
+    <wsdl:part name="parameters" element="tns:spInformeTipo" />
+  </wsdl:message>
+  <wsdl:message name="spInformeTipoSoapOut">
+    <wsdl:part name="parameters" element="tns:spInformeTipoResponse" />
+  </wsdl:message>
   <wsdl:message name="AgregarProductoSoapIn">
     <wsdl:part name="parameters" element="tns:AgregarProducto" />
   </wsdl:message>
@@ -1119,6 +1305,12 @@
   <wsdl:message name="ModificarDetalleSoapOut">
     <wsdl:part name="parameters" element="tns:ModificarDetalleResponse" />
   </wsdl:message>
+  <wsdl:message name="ModificarDetalleCantidadActualByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarDetalleCantidadActualByID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarDetalleCantidadActualByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarDetalleCantidadActualByIDResponse" />
+  </wsdl:message>
   <wsdl:message name="MotrarAllDetalleSoapIn">
     <wsdl:part name="parameters" element="tns:MotrarAllDetalle" />
   </wsdl:message>
@@ -1130,6 +1322,12 @@
   </wsdl:message>
   <wsdl:message name="MostrarDetalleByIDSoapOut">
     <wsdl:part name="parameters" element="tns:MostrarDetalleByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarDetalleByIDProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarDetalleByIDProducto" />
+  </wsdl:message>
+  <wsdl:message name="MostrarDetalleByIDProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarDetalleByIDProductoResponse" />
   </wsdl:message>
   <wsdl:message name="AgregarProductoOtSoapIn">
     <wsdl:part name="parameters" element="tns:AgregarProductoOt" />
@@ -1154,6 +1352,30 @@
   </wsdl:message>
   <wsdl:message name="MostrarProductosOtByIDSoapOut">
     <wsdl:part name="parameters" element="tns:MostrarProductosOtByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductosOtByIDProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarProductosOtByIDProducto" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductosOtByIDProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarProductosOtByIDProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductosOtByIDOTSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarProductosOtByIDOT" />
+  </wsdl:message>
+  <wsdl:message name="MostrarProductosOtByIDOTSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarProductosOtByIDOTResponse" />
+  </wsdl:message>
+  <wsdl:message name="BorrarProductoOTBYIDPRODUCTOOTSoapIn">
+    <wsdl:part name="parameters" element="tns:BorrarProductoOTBYIDPRODUCTOOT" />
+  </wsdl:message>
+  <wsdl:message name="BorrarProductoOTBYIDPRODUCTOOTSoapOut">
+    <wsdl:part name="parameters" element="tns:BorrarProductoOTBYIDPRODUCTOOTResponse" />
+  </wsdl:message>
+  <wsdl:message name="spInformeBodegaSoapIn">
+    <wsdl:part name="parameters" element="tns:spInformeBodega" />
+  </wsdl:message>
+  <wsdl:message name="spInformeBodegaSoapOut">
+    <wsdl:part name="parameters" element="tns:spInformeBodegaResponse" />
   </wsdl:message>
   <wsdl:message name="AgregarBodegaSoapIn">
     <wsdl:part name="parameters" element="tns:AgregarBodega" />
@@ -1214,6 +1436,12 @@
   </wsdl:message>
   <wsdl:message name="ModificarOtbyIDSoapOut">
     <wsdl:part name="parameters" element="tns:ModificarOtbyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarOtNetobyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarOtNetobyID" />
+  </wsdl:message>
+  <wsdl:message name="ModificarOtNetobyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarOtNetobyIDResponse" />
   </wsdl:message>
   <wsdl:message name="MotrarAllOtSoapIn">
     <wsdl:part name="parameters" element="tns:MotrarAllOt" />
@@ -1345,6 +1573,11 @@
       <wsdl:input message="tns:MostrarTipoByIDSoapIn" />
       <wsdl:output message="tns:MostrarTipoByIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="spInformeTipo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">informe tipo</wsdl:documentation>
+      <wsdl:input message="tns:spInformeTipoSoapIn" />
+      <wsdl:output message="tns:spInformeTipoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AgregarProducto">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar Producto</wsdl:documentation>
       <wsdl:input message="tns:AgregarProductoSoapIn" />
@@ -1375,6 +1608,11 @@
       <wsdl:input message="tns:ModificarDetalleSoapIn" />
       <wsdl:output message="tns:ModificarDetalleSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ModificarDetalleCantidadActualByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica detalle Cantidad Actual por ID Producto, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarDetalleCantidadActualByIDSoapIn" />
+      <wsdl:output message="tns:ModificarDetalleCantidadActualByIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="MotrarAllDetalle">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todos los detalles ingresados</wsdl:documentation>
       <wsdl:input message="tns:MotrarAllDetalleSoapIn" />
@@ -1384,6 +1622,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra detalle, recibe parametro ID</wsdl:documentation>
       <wsdl:input message="tns:MostrarDetalleByIDSoapIn" />
       <wsdl:output message="tns:MostrarDetalleByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleByIDProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra detalle, recibe parametro ID producto</wsdl:documentation>
+      <wsdl:input message="tns:MostrarDetalleByIDProductoSoapIn" />
+      <wsdl:output message="tns:MostrarDetalleByIDProductoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AgregarProductoOt">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar producto ot</wsdl:documentation>
@@ -1404,6 +1647,26 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra productos ot, recibe parametro ID</wsdl:documentation>
       <wsdl:input message="tns:MostrarProductosOtByIDSoapIn" />
       <wsdl:output message="tns:MostrarProductosOtByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByIDProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra productos ot, recibe parametro ID producto</wsdl:documentation>
+      <wsdl:input message="tns:MostrarProductosOtByIDProductoSoapIn" />
+      <wsdl:output message="tns:MostrarProductosOtByIDProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByIDOT">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra productos ot, recibe parametro ID_OT</wsdl:documentation>
+      <wsdl:input message="tns:MostrarProductosOtByIDOTSoapIn" />
+      <wsdl:output message="tns:MostrarProductosOtByIDOTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarProductoOTBYIDPRODUCTOOT">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Borrar productos ot, recibe parametro ID_PRODUCTO_OT</wsdl:documentation>
+      <wsdl:input message="tns:BorrarProductoOTBYIDPRODUCTOOTSoapIn" />
+      <wsdl:output message="tns:BorrarProductoOTBYIDPRODUCTOOTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="spInformeBodega">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">informe bodega</wsdl:documentation>
+      <wsdl:input message="tns:spInformeBodegaSoapIn" />
+      <wsdl:output message="tns:spInformeBodegaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AgregarBodega">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar BODEGA</wsdl:documentation>
@@ -1454,6 +1717,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica cliente por ID, con parametros de entrada</wsdl:documentation>
       <wsdl:input message="tns:ModificarOtbyIDSoapIn" />
       <wsdl:output message="tns:ModificarOtbyIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOtNetobyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifica ot NETO por ID, con parametros de entrada</wsdl:documentation>
+      <wsdl:input message="tns:ModificarOtNetobyIDSoapIn" />
+      <wsdl:output message="tns:ModificarOtNetobyIDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="MotrarAllOt">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Muestra todas las ot ingresados</wsdl:documentation>
@@ -1609,6 +1877,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="spInformeTipo">
+      <soap:operation soapAction="http://localhost/spInformeTipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AgregarProducto">
       <soap:operation soapAction="http://localhost/AgregarProducto" style="document" />
       <wsdl:input>
@@ -1663,6 +1940,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ModificarDetalleCantidadActualByID">
+      <soap:operation soapAction="http://localhost/ModificarDetalleCantidadActualByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MotrarAllDetalle">
       <soap:operation soapAction="http://localhost/MotrarAllDetalle" style="document" />
       <wsdl:input>
@@ -1674,6 +1960,15 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarDetalleByID">
       <soap:operation soapAction="http://localhost/MostrarDetalleByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleByIDProducto">
+      <soap:operation soapAction="http://localhost/MostrarDetalleByIDProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1710,6 +2005,42 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarProductosOtByID">
       <soap:operation soapAction="http://localhost/MostrarProductosOtByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByIDProducto">
+      <soap:operation soapAction="http://localhost/MostrarProductosOtByIDProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByIDOT">
+      <soap:operation soapAction="http://localhost/MostrarProductosOtByIDOT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarProductoOTBYIDPRODUCTOOT">
+      <soap:operation soapAction="http://localhost/BorrarProductoOTBYIDPRODUCTOOT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="spInformeBodega">
+      <soap:operation soapAction="http://localhost/spInformeBodega" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1800,6 +2131,15 @@
     </wsdl:operation>
     <wsdl:operation name="ModificarOtbyID">
       <soap:operation soapAction="http://localhost/ModificarOtbyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOtNetobyID">
+      <soap:operation soapAction="http://localhost/ModificarOtNetobyID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2017,6 +2357,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="spInformeTipo">
+      <soap12:operation soapAction="http://localhost/spInformeTipo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AgregarProducto">
       <soap12:operation soapAction="http://localhost/AgregarProducto" style="document" />
       <wsdl:input>
@@ -2071,6 +2420,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ModificarDetalleCantidadActualByID">
+      <soap12:operation soapAction="http://localhost/ModificarDetalleCantidadActualByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MotrarAllDetalle">
       <soap12:operation soapAction="http://localhost/MotrarAllDetalle" style="document" />
       <wsdl:input>
@@ -2082,6 +2440,15 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarDetalleByID">
       <soap12:operation soapAction="http://localhost/MostrarDetalleByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDetalleByIDProducto">
+      <soap12:operation soapAction="http://localhost/MostrarDetalleByIDProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2118,6 +2485,42 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarProductosOtByID">
       <soap12:operation soapAction="http://localhost/MostrarProductosOtByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByIDProducto">
+      <soap12:operation soapAction="http://localhost/MostrarProductosOtByIDProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarProductosOtByIDOT">
+      <soap12:operation soapAction="http://localhost/MostrarProductosOtByIDOT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarProductoOTBYIDPRODUCTOOT">
+      <soap12:operation soapAction="http://localhost/BorrarProductoOTBYIDPRODUCTOOT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="spInformeBodega">
+      <soap12:operation soapAction="http://localhost/spInformeBodega" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2208,6 +2611,15 @@
     </wsdl:operation>
     <wsdl:operation name="ModificarOtbyID">
       <soap12:operation soapAction="http://localhost/ModificarOtbyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOtNetobyID">
+      <soap12:operation soapAction="http://localhost/ModificarOtNetobyID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

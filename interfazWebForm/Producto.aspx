@@ -34,11 +34,11 @@
                 Tipo
             </td>
             <td class="style5">
-                <asp:DropDownList ID="ddTipo" runat="server" AutoPostBack="True" 
-                    DataSourceID="objMostrarTipo" DataTextField="Nombre_tipo" 
+                <asp:DropDownList ID="ddTipo" runat="server" 
+                    DataSourceID="ObjMostrarTodoTipo" DataTextField="Nombre_tipo" 
                     DataValueField="Id_tipo">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="objMostrarTipo" runat="server" 
+                <asp:ObjectDataSource ID="ObjMostrarTodoTipo" runat="server" 
                     SelectMethod="MotrarAllTipo" TypeName="servicioWeb.WCFTrans">
                 </asp:ObjectDataSource>
             </td>
@@ -89,13 +89,11 @@
                 DataNavigateUrlFormatString="ProductoModificar.aspx?id_producto={0}" 
                 DataTextField="Producto_cod" HeaderText="Modificar Producto" 
                 Text="Modificar Producto" />
-            <asp:BoundField DataField="Producto_cod" HeaderText="Producto_cod" 
+            <asp:BoundField DataField="Producto_cod" HeaderText="Codigo Producto" 
                 SortExpression="Producto_cod" />
-            <asp:BoundField DataField="Id_tipo" HeaderText="Id_tipo" 
-                SortExpression="Id_tipo" />
-            <asp:BoundField DataField="Cod_bodega" HeaderText="Cod_bodega" 
+            <asp:BoundField DataField="Cod_bodega" HeaderText="Codigo Bodega" 
                 SortExpression="Cod_bodega" />
-            <asp:BoundField DataField="Nombre_producto" HeaderText="Nombre_producto" 
+            <asp:BoundField DataField="Nombre_producto" HeaderText="Nombre Producto" 
                 SortExpression="Nombre_producto" />
             <asp:HyperLinkField DataNavigateUrlFields="Producto_cod" 
                 DataNavigateUrlFormatString="DetalleProducto.aspx?id_producto={0}" 

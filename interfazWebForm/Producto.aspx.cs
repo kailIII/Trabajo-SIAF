@@ -19,7 +19,7 @@ public partial class Producto : System.Web.UI.Page
     {
         servicioWeb.WCFTrans servicio = new servicioWeb.WCFTrans();
         string COD_PRODUCTO = txtCodPro.Text;
-        int ID_TIPO = Convert.ToInt32(ddTipo.SelectedIndex);
+        int ID_TIPO = Convert.ToInt32(ddTipo.SelectedValue);
         string COD_BODEGA = Convert.ToString(ddCodBodega.SelectedValue);
         string NOMBRE_PRODUCTO= txtNomProd.Text;
         string COD_BARRA = "xxx";

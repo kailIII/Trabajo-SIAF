@@ -76,12 +76,12 @@
         <Columns>
             <asp:CommandField ShowEditButton="True" />
             <asp:BoundField DataField="Producto_cod_detalle" 
-                HeaderText="Producto_cod_detalle" SortExpression="Producto_cod_detalle" />
-            <asp:BoundField DataField="Producto_cod" HeaderText="Producto_cod" 
+                HeaderText="Codigo Detalle" SortExpression="Producto_cod_detalle" />
+            <asp:BoundField DataField="Producto_cod" HeaderText="Codigo Producto" 
                 SortExpression="Producto_cod" />
-            <asp:BoundField DataField="Cantidad_minima" HeaderText="Cantidad_minima" 
+            <asp:BoundField DataField="Cantidad_minima" HeaderText="Cantidad Minima" 
                 SortExpression="Cantidad_minima" />
-            <asp:BoundField DataField="Cantidad_actual" HeaderText="Cantidad_actual" 
+            <asp:BoundField DataField="Cantidad_actual" HeaderText="Cantidad Actual" 
                 SortExpression="Cantidad_actual" />
             <asp:BoundField DataField="Valor" HeaderText="Valor" SortExpression="Valor" />
         </Columns>

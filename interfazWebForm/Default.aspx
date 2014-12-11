@@ -18,31 +18,58 @@
         {
             width: 128px;
         }
+        .style4
+        {
+            width: 100%;
+        }
+        .style5
+        {
+            width: 98px;
+        }
+        .style6
+        {
+            width: 100px;
+        }
+        .style7
+        {
+            color: #66667E;
+        }
+        .style8
+        {
+            width: 60px;
+            color: #66667E;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-    
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+    <br />
+        <table align="center" class="style4">
+            <tr>
+                <td class="style5">
+                    <h1>
+                        &nbsp;</h1>
+                </td>
+                <td class="style6">
+                    <h1 class="style7">
+                    SIAF</h1>
+                </td>
+                <td class="style7">
+                    Sistema Informacion Administrativa Ferreteria</td>
+            </tr>
+        </table>
     
         <table align="center" class="style1">
             <tr>
-                <td class="style2">
+                <td class="style8">
                     Usuario</td>
                 <td class="style3">
                     <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style8">
                     Password</td>
                 <td class="style3">
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
@@ -64,6 +91,9 @@
                 </td>
             </tr>
         </table>
+    
+        <br />
+        <br />
     
     </div>
     </form>

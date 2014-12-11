@@ -32,7 +32,7 @@ namespace Negocio
 
             dd.PRODUCTO_COD_DETALLE = d.Producto_cod_detalle;
             dd.PRODUCTO_COD = d.Producto_cod;
-            dd.CANTIDAD_MINIMA = d.Cantidad_actual;
+            dd.CANTIDAD_MINIMA = d.Cantidad_minima;
             dd.CANTIDAD_ACTUAL = d.Cantidad_actual;
             dd.VALOR = d.Valor;
 

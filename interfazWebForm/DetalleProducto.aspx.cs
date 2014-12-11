@@ -23,7 +23,7 @@ public partial class DetalleProducto : System.Web.UI.Page
         servicioWeb.WCFTrans servicio = new servicioWeb.WCFTrans();
         string PRODUCTO_COD = lblCodPro.Text;
         string PRODUCTO_COD_DETALLE = txtCodDetalle.Text;
-        int CANTIDAD_MINIMA = Convert.ToInt32( txtCanMin.Text);
+        int CANTIDAD_MINIMA = Convert.ToInt32(txtCanMin.Text);
         int CANTIDAD_ACTUAL = Convert.ToInt32(txtCanAct.Text);
         int VALOR = Convert.ToInt32(txtValor.Text);
         servicio.AgregarDetalle(PRODUCTO_COD_DETALLE,PRODUCTO_COD,CANTIDAD_MINIMA,CANTIDAD_ACTUAL,VALOR);
